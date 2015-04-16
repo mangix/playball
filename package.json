@@ -1,0 +1,26 @@
+{
+  "name": "playball",
+  "version": "1.0.0",
+  "description": "玩个球",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mangix/playball.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mangix/playball/issues"
+  },
+  "homepage": "https://github.com/mangix/playball",
+  "dependencies": {
+    "hiredis": "^0.3.0",
+    "mysql": "^2.6.2",
+    "redis": "^0.12.1",
+    "request": "^2.55.0",
+    "underscore": "^1.8.3"
+  }
+}
