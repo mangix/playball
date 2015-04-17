@@ -20,9 +20,12 @@ var Game = function () {
     column.Result = null;
     column.WinnerID = null;
     column.Memo = null;
+    column.HostScore = null;
+    column.VisitScore = null;
+    column.ThirdID = null;
 };
 
-Game.prototype.data = function(){
+Game.prototype.data = function () {
     return this.column;
 };
 
