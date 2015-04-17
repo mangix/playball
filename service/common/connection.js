@@ -1,11 +1,8 @@
 var mysql = require('mysql');
 var pool = mysql.createPool({
-    host: '115.159.33.31',
-    user: 'root',
-    password: 'dzt99123',
-//    host:"127.0.0.1",
-//    user:"root",
-//    password:"123456",
+    host:"127.0.0.1",
+    user:"root",
+    password:"123456",
     database: "playball",
     connectionLimit: 15,
     acquireTimeout:20000,
