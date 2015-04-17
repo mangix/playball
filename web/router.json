@@ -1,0 +1,12 @@
+{
+    "/playball":{
+        "subs":{
+            "/nba":{
+                "action":"nba/index",
+                "result":{
+                    "success":"nba/index.jade"
+                }
+            }
+        }
+    }
+}

@@ -13,6 +13,9 @@ Create Table playball.Game(
 	`WinnerID` int NULL comment '胜利一方的ID',
 	`Memo` text NULL comment '比赛描述',
 	`ThirdID` int NULL comment 'hupu id',
+  `IsPlayOff` int NOT NULL default 0 comment '如果是NBA，标记是否是季后赛，0=不是，1=是',
+  `RoundID` int NOT NULL default 0 comment '如果是NBA季后赛，对应PlayOff表的RoundID',
+  `Season` int NOT NULL  default 20142015 comment '赛季',
 	Primary KEY (`GameID`),
 	index IX_TYPE_TIME(`Type`,`Time`)
 
@@ -27,3 +30,21 @@ Create Table playball.Live(
   Primary KEY (`LiveID`),
   index IX_GameID(`GameID`)
 )engine=innodb default charset=utf8 comment '直播源';
+
+Create Table playball.PlayOff(
+  `RoundID` int  AUTO_INCREMENT NOT NULL Comment 'LiveID',
+  `HostID` int NOT NULL COMMENT '主场优势球队ID',
+  `HostName` varchar(100) NOT NULL COMMENT '主场优势球队名称',
+  `HostRank` int NOT NULL COMMENT '主场优势球队排名',
+  `HostWin` int NOT NULL default 0 COMMENT '主场优势球队赢的场数',
+  `VisitID` int NOT NULL COMMENT '劣势球队ID',
+  `VisitName` varchar(100) NOT NULL COMMENT '劣势球队名称',
+  `VisitRank` int NOT NULL COMMENT '劣势球队排名',
+  `VisitWin` int NOT NULL default 0 COMMENT '劣势球队赢的场数',
+  `Round` int NOT NULL default 1 COMMENT '第几轮',
+  `Area` int NOT NULL  default 1 COMMENT '东西部，1=西部，2=东部',
+  `Season` int NOT NULL default 20142015 COMMENT '赛季',
+  `Status` int NOT NULL default 1 COMMENT '1没打完，2打完',
+  Primary KEY (`RoundID`),
+  index IX_Round_Season(`Round`,`Season`)
+)engine=innodb default charset=utf8 comment '季后赛对战表';

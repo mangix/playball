@@ -11,6 +11,10 @@ gameService.loadGames({
     fromDate:new Date(Date.parse('2015-04-17')),
     endDate :new Date(Date.parse('2015-04-20'))
 },function(err , results){
-    console.log(results)
+//    console.log(results)
 
+});
+
+gameService.loadPlayOff(20142015, function(err,results){
+    console.log(results)
 });

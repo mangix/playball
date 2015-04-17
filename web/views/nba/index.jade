@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    - var list = [playOff.west , playOff.east];
+    each area in list
+        .area
+            each round in area
+                .round
+                    each team,index in round
+                        .box
+                            if !team
+                                span ?
+                            else if team.Type == "team"
+                                span #{team.TeamName}
+                            else if team.Type == "live"
+                                span #{team.RoundID}
+
+                        .self-line
+                        if index%2==0
+                            .hor
+                            .ver
+
+
+
+

@@ -23,6 +23,9 @@ var Game = function () {
     column.HostScore = null;
     column.VisitScore = null;
     column.ThirdID = null;
+    column.IsPlayOff = 1;
+    column.RoundID = 0;
+
 };
 
 Game.prototype.data = function () {
