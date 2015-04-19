@@ -2,6 +2,7 @@ var gameService = require("../../../service/game_service");
 var async = require("async");
 var RoundEntity = require("../../../service/game_service/entity/round");
 var _ = require("underscore");
+var moment = require('moment');
 
 exports.execute = function (req, res) {
     async.parallel([loadPlayOff], function (err, results) {
@@ -45,14 +46,16 @@ var loadPlayOff = function (cb) {
                 TeamName: round.HostName,
                 TeamRank: round.HostRank,
                 TeamWin: round.HostWin,
-                Type: 'team'
+                Type: 'team',
+                cls: CLS_MAP[round.HostID]
             };
             var visit = {
                 TeamID: round.VisitID,
                 TeamName: round.VisitName,
                 TeamRank: round.VisitRank,
                 TeamWin: round.VisitWin,
-                Type: 'team'
+                Type: 'team',
+                cls: CLS_MAP[round.VisitID]
             };
 
             var thisArray = data[area][round.Round - 1];
@@ -89,7 +92,8 @@ var loadPlayOff = function (cb) {
             } else {
                 var live = {
                     Type: "live",
-                    RoundID: round.RoundID
+                    RoundID: round.RoundID,
+                    round: round
                 };
                 if (round.Round == 4) {
                     //总决赛没打完
@@ -104,8 +108,16 @@ var loadPlayOff = function (cb) {
         fillNul(data.west);
         fillNul(data.east);
 
-
-        cb(null, data);
+        async.parallel({
+            west: function (cb) {
+                loadLiveData(data.west, cb);
+            },
+            east: function (cb) {
+                loadLiveData(data.east, cb);
+            }
+        }, function () {
+            cb(null, data);
+        });
     });
 };
 
@@ -115,12 +127,74 @@ var fillNul = function (area) {
         var l = round.length;
         if (l < max) {
             for (var j = 0; j < max - l; j++) {
-                round.push(null);
+                round.push({
+                    Type: 'null'
+                });
             }
         }
     });
 };
 
+var loadLiveData = function (area, cb) {
+    var tasks = {};
+    area.forEach(function (round) {
+        round.forEach(function (item) {
+            if (item.Type == "live") {
+                tasks[item.RoundID] = function (cb) {
+                    gameService.loadGamesByRoundID(item.RoundID, function (err, gameList) {
+                        var list = gameList || [];
+                        var gameToday = list.filter(function (game) {
+                            return gameService.isToday(game);
+                        });
+
+                        if (gameToday.length) {
+                            //如果今天有比赛
+                            item.live = gameToday[0];
+                            //比分处理
+                            if (item.round.HostID == item.live.HostID) {
+                                item.live.parsedScore = item.live.HostScore+'-'+item.live.VisitScore;
+                            }else{
+                                item.live.parsedScore = item.live.VisitScore+'-'+item.live.HostScore;
+                            }
+                        } else {
+                            //下一场比赛
+                            var nextGameList = list.sort(function (a, b) {
+                                return Date.parse(a.Time) - Date.parse(b.Time);
+                            }).filter(function (game) {
+                                return Date.parse(game.Time) > +new Date();
+                            });
+                            if (nextGameList.length) {
+                                item.next = nextGameList[0];
+                                item.next.displayTime = moment(item.next.Time).format('MM-DD');
+                            }
+                        }
+
+                        cb(null, null);
+                    });
+                };
+            }
+        });
+    });
+    async.parallel(tasks, cb);
+};
 
 
+var CLS_MAP = {
+    1: 'gsw',
+    8: 'nop',
+    4: 'por',
+    5: 'mem',
+    3: 'lac',
+    6: 'sas',
+    2: 'hou',
+    7: 'dal',
+    16: 'tor',
+    17: 'bos',
+    18: 'bkn',
+    21: 'alt',
+    22: 'was',
+    26: 'cle',
+    27: 'chi',
+    28: 'mil'
+};
 

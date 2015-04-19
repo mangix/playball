@@ -51,7 +51,6 @@ exports.loadGames = function (options, cb) {
 /**
  * 加载NBA 季后赛对战表
  * */
-
 exports.loadPlayOff = function (season, cb) {
     playOffDao.loadBySeason(season, function (err, results) {
         if (err) {
@@ -63,4 +62,35 @@ exports.loadPlayOff = function (season, cb) {
             }));
         }
     });
+};
+
+/**
+ * RoundID 查询
+ * */
+exports.loadGamesByRoundID = function (roundId, cb) {
+    gameDao.loadGamesByRoundID(roundId, function (err, results) {
+        if (err) {
+            cb(new Error('db error'));
+        } else {
+            cb(null, results);
+        }
+    })
+};
+
+/**
+ * 判断一个game是不是今天的
+ * */
+exports.isToday = function (game) {
+    var time = game.Time;
+
+    var today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setSeconds(0);
+    today.setMilliseconds(0);
+
+    var tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    return time >= +today && time < tomorrow;
 };

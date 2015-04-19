@@ -1,24 +1,29 @@
 extends ../layout
 
 block content
-    - var list = [playOff.west , playOff.east];
-    each area in list
-        .area
-            each round in area
-                .round
-                    each team,index in round
-                        .box
-                            if !team
-                                span ?
-                            else if team.Type == "team"
-                                span #{team.TeamName}
-                            else if team.Type == "live"
-                                span #{team.RoundID}
+    .playoff.Fix
+        - var list = [playOff.west , playOff.east];
 
-                        .self-line
-                        if index%2==0
-                            .hor
-                            .ver
+        each area,i in list
+            .area(class=i==0?'west':'east')
+                each round,j in area
+                    .round(class="round#{j+1}")
+                        each team,index in round
+                            .box(class= team && team.Type=='team' ? '#{team.cls}':'',class='#{team.Type}')
+                                if team.Type == 'null'
+                                    span ?
+                                else if team.Type == "team"
+                                    span.logo
+                                    span.team #{team.TeamName}(#{team.TeamWin})
+                                else if team.Type == "live"
+                                    if team.live
+                                        | #{team.live.parsedScore}
+                                    else if team.next
+                                        | #{team.next.displayTime}
+                                .self-line
+                                if index%2==0 && j<3
+                                    .hor
+                                    .ver
 
 
 

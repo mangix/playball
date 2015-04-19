@@ -24,11 +24,12 @@ Create Table playball.Game(
 Create Table playball.Live(
   `LiveID` int  AUTO_INCREMENT NOT NULL Comment 'LiveID',
   `GameID` int NOT NULL comment '比赛ID，Game.GameID',
-  `Link` varchar(500) NOT NULL comment '链接',
+  `Link` varchar(200) NOT NULL comment '链接',
   `Name` varchar(100) NOT NULL comment '链接名称',
   `Type` int NOT NULL default 1 comment '直播类型，1=视频，2=文字',
   Primary KEY (`LiveID`),
-  index IX_GameID(`GameID`)
+  index IX_GameID(`GameID`),
+  UNIQUE  KEY UK_GameID_Link(`GameID`,`Link`)
 )engine=innodb default charset=utf8 comment '直播源';
 
 Create Table playball.PlayOff(

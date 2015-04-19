@@ -26,5 +26,9 @@ exports.insert = function (game, cb) {
  * 获取所有比赛
  * */
 exports.loadByTypeTime = function (type, fromDate, endDate, cb) {
-    query('select ?? from Game where Type=? and Time between ? and ?', [columns ,type, fromDate , endDate], cb);
+    query('select ?? from Game where Type=? and Time between ? and ?', [columns , type, fromDate , endDate], cb);
+};
+
+exports.loadGamesByRoundID = function (roundId, cb) {
+    query('select ?? from Game where RoundID=?', [columns  , roundId], cb);
 };

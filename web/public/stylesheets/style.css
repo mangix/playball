@@ -1,8 +1,289 @@
+*{margin:0;padding:0}
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.Fix{zoom:1}.Fix:after{display:block;content:'\20';height:0;clear:both}
 
-a {
-  color: #00B7FF;
+.nav{}
+
+.container{
+    width: 1024px;
+    margin:0 auto;
+}
+
+.playoff{
+    padding: 20px 0 ;
+}
+.playoff .area{
+    width:512px;
+
+}
+.playoff .west{
+    float: left;
+
+}
+.playoff .east{
+    float: right;
+}
+.playoff .west .round{
+    float: left;
+}
+.playoff .east .round{
+    float: right;
+}
+
+.playoff .box{
+    width:65px;
+    /*border: solid 1px #ccc;*/
+    height: 40px;
+    line-height: 38px;
+    position: relative;
+    text-align: left;
+    padding-left: 25px;
+    font-size: 16px;
+}
+.playoff .box.null ,.playoff .box.live{
+    padding-left: 0;
+    width: 90px;
+    text-align: center;
+}
+
+.playoff .box .self-line,.playoff  .box .hor{
+    position: absolute;
+    width:10px;
+    border-top:solid 2px #ba0d0d;
+}
+.playoff .box .ver{
+    height: 80px;
+    position: absolute;
+    top:20px;
+    border-left:solid 2px #ba0d0d ;
+
+}
+.playoff .box .logo{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 2px;
+    top:10px;
+}
+.playoff .box .team{
+    white-space: nowrap;
+}
+.playoff .west .box .ver{
+    right: -10px;
+}
+.playoff .east .box .ver{
+    left: -10px;
+}
+.playoff .box .self-line{
+    top:50%;
+
+}
+.playoff .west .self-line {
+    left: 100%;
+}
+.playoff .east .self-line{
+    right: 100%;
+}
+.playoff .box .hor{
+    top:60px;
+
+}
+.playoff .west .box .hor{
+    right:-20px;
+}
+.playoff .east .box .hor{
+    left: -20px;
+}
+
+.playoff .round{
+    margin-right: 20px;
+}
+
+.playoff .round2{
+    padding-top: 40px;
+}
+.playoff .round3{
+    padding-top: 120px;
+}
+.playoff .round4{
+    padding-top: 280px;
+}
+
+.playoff .round1 .box{
+    margin-bottom: 40px;
+}
+.playoff .round2 .box{
+    margin-bottom: 120px;
+}
+.playoff .round3 .box{
+    margin-bottom: 280px;
+}
+
+.playoff .round2 .ver{
+    height: 160px;
+}
+.playoff .round2 .hor{
+    top:100px;
+}
+.playoff .round3 .ver{
+    height: 320px;
+}
+.playoff .round3 .hor{
+    top:180px;
+
+
+}
+.playoff .round4 .self-line{
+    display: none;
+}
+
+
+/*球队颜色*/
+/*.box.gsw{*/
+    /*background-color: #0d5dab;*/
+    /*color:#ddbe43;*/
+    /*border-color: #c8b43d;*/
+/*}*/
+/*.box.nop{*/
+    /*background-color: #051c49;*/
+    /*color: #ffffff;*/
+    /*border-color: #ac122a;*/
+/*}*/
+/*.box.por{*/
+    /*background-color: #251d1d;*/
+    /*color: #ffffff;*/
+    /*border-color: #dd2b2d;*/
+/*}*/
+/*.box.mem{*/
+    /*background-color: #14335b;*/
+    /*color: #ffffff;*/
+    /*border-color: #f9c02b;*/
+/*}*/
+/*.box.lac{*/
+    /*background-color: #0144a8;*/
+    /*color: #ffffff;*/
+    /*border-color: #8f326d;*/
+/*}*/
+/*.box.sas{*/
+    /*background-color: #cdd5da;*/
+    /*color: #000000;*/
+    /*border-color: #837f80;*/
+/*}*/
+/*.box.hou{*/
+    /*background-color: #c60032;*/
+    /*color: #ffffff;*/
+    /*border-color: #ffffff;*/
+/*}*/
+/*.box.dal{*/
+    /*background-color: #086cb5;*/
+    /*color: #ffffff;*/
+    /*border-color: #21262e;*/
+/*}*/
+/*.box.alt{*/
+    /*background-color: #122b53;*/
+    /*color: #ffffff;*/
+    /*border-color: #9a4d4f;*/
+/*}*/
+/*.box.bkn{*/
+    /*background-color: #030303;*/
+    /*color: #ffffff;*/
+    /*border-color: #ffffff;*/
+/*}*/
+/*.box.tor{*/
+    /*background-color: #ce0235;*/
+    /*color: #ffffff;*/
+    /*border-color: #b34a60;*/
+/*}*/
+/*.box.was{*/
+    /*background-color: #ffffff;*/
+    /*color: #e7193a;*/
+    /*border-color: #7c2239;*/
+/*}*/
+/*.box.chi{*/
+    /*background-color: #cf0236;*/
+    /*color: #ffffff;*/
+    /*border-color: #000000;*/
+
+/*}*/
+/*.box.mil{*/
+    /*background-color: #0e4a22;*/
+    /*color: #ffffff;*/
+    /*border-color: #a65460;*/
+/*}*/
+/*.box.cle{*/
+    /*background-color: #8e0535;*/
+    /*color: #e29a29;*/
+    /*border-color: #d4812a;*/
+/*}*/
+/*.box.bos{*/
+    /*background-color: #118346;*/
+    /*color: #ffffff;*/
+    /*border-color: #ffffff;*/
+/*}*/
+
+/*球队颜色*/
+.box.gsw .logo{
+    background: url(./img/GSW.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.nop .logo{
+    background: url(./img/NOH.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.por .logo{
+    background: url(./img/POR.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.mem .logo{background: url(./img/MEN.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.lac .logo{
+    background: url(./img/LAC.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.sas .logo{
+    background: url(./img/SAS.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.hou .logo{
+    background: url(./img/HOU.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.dal .logo{
+    background: url(./img/DAL.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.alt .logo{
+    background: url(./img/ATL.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.bkn .logo{
+    background: url(./img/BKN.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.tor .logo{
+    background: url(./img/TOR.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.was .logo{
+    background: url(./img/WAS.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.chi .logo{
+    background: url(./img/CHI.png) no-repeat 0 0;
+    background-size: 20px 20px;
+
+}
+.box.mil .logo{background: url(./img/MIL.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.cle .logo{
+    background: url(./img/CLE.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+.box.bos .logo{
+    background: url(./img/BOS.png) no-repeat 0 0;
+    background-size: 20px 20px;
 }
