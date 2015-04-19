@@ -87,6 +87,7 @@ var loadPlayOff = function (cb) {
                     data.champion = winner
                 } else {
                     //晋级下一轮
+                    winner.TeamWin = 0;
                     nextArray.push(winner);
                 }
             } else {
