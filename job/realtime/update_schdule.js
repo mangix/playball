@@ -8,7 +8,6 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 
-
 module.exports = function () {
     var today = new Date();
     today.setHours(0);
@@ -19,7 +18,7 @@ module.exports = function () {
     var tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    query("select * from playball.Game where Time between ? and ? and Status<2", [today,tomorrow], function (error, results) {
+    query("select * from playball.Game where Time between ? and ? and Status<2", [today, tomorrow], function (error, results) {
         if (!error && results && results.length) {
 
             results.forEach(function (game) {
@@ -28,7 +27,7 @@ module.exports = function () {
                     updateStatus(game.GameID, 1);
                 }
                 if (game.Status == 1) {
-                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID);
+                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
                 }
 
             });
@@ -37,7 +36,7 @@ module.exports = function () {
 };
 
 
-function findScore(liveUrl, id) {
+function findScore(liveUrl, id, game) {
     console.log("request hupu game page " + liveUrl + " to get score.. ");
 
     request(liveUrl, function (errors, response, body) {
@@ -67,7 +66,7 @@ function findScore(liveUrl, id) {
                 }
             }
             if (status) {
-                updateStatus(id, status);
+                updateStatus(id, status, hs > vs ? game.HostID : game.VisitID, game);
             }
 
         }
@@ -86,12 +85,28 @@ function updateScore(id, hs, vs) {
     });
 }
 
-function updateStatus(id, status) {
+function updateStatus(id, status, winnerID, game) {
     query("update playball.Game set ? where GameID=" + id, {
-        Status: status
+        Status: status,
+        WinnerID: winnerID || 0
     }, function (err) {
         if (err) {
             console.log(err);
+        } else {
+            if (status == 2 && game && game.IsPlayOff == 1 && game.RoundID) {
+                query('select * from playball.PlayOff where RoundID = ?', [game.RoundID], function (err, round) {
+                    if (!err && round && round.length) {
+                        round = round[0];
+                        var key = winnerID == round.HostID ? 'HostWin' : 'VisitWin';
+                        query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ?', [game.RoundID], function (e) {
+                            if (e) {
+                                console.log(e);
+                            }
+                        });
+                    }
+                });
+
+            }
         }
     });
 }

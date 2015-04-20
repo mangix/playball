@@ -12,6 +12,7 @@ exports.execute = function (req, res) {
     });
 };
 
+//季后赛对战表
 var loadPlayOff = function (cb) {
     gameService.loadPlayOff(20142015, function (err, results) {
         var data = {
@@ -153,9 +154,9 @@ var loadLiveData = function (area, cb) {
                             item.live = gameToday[0];
                             //比分处理
                             if (item.round.HostID == item.live.HostID) {
-                                item.live.parsedScore = item.live.HostScore+'-'+item.live.VisitScore;
-                            }else{
-                                item.live.parsedScore = item.live.VisitScore+'-'+item.live.HostScore;
+                                item.live.parsedScore = item.live.HostScore + '-' + item.live.VisitScore;
+                            } else {
+                                item.live.parsedScore = item.live.VisitScore + '-' + item.live.HostScore;
                             }
                         } else {
                             //下一场比赛
@@ -179,6 +180,14 @@ var loadLiveData = function (area, cb) {
     async.parallel(tasks, cb);
 };
 
+//直播列表
+var loadLiveList = function () {
+    gameService.loadGames({
+
+    }, function (err, list) {
+
+    });
+};
 
 var CLS_MAP = {
     1: 'gsw',
