@@ -1,7 +1,20 @@
 var Game = require("./entity/game");
 var gameDao = require("./dao/game");
 var playOffDao = require("./dao/playoff");
-
+var date = require("../../util/date_util");
+var async = require('async');
+var liveService = require("../live_service");
+var teamService = require("../team_service");
+var moment = require("moment");
+var WEEK = {
+    0: '周一',
+    1: '周二',
+    2: '周三',
+    3: '周四',
+    4: '周五',
+    5: '周六',
+    6: '周日'
+};
 /**
  * add a game
  *
@@ -33,17 +46,66 @@ exports.addGame = function (game, cb) {
  *     fromDate:
  *     endDate: 时间区间
  *     live:false, 是否需要直播信息,
- *     replay:false , 是否需要录像信息
+ *     replay:false , 是否需要录像信息,
+ *     byDate:false , 是否需要按日期组成map
+ *     shortName:false,是否显示队伍的短名
  * }
  *
  * */
 exports.loadGames = function (options, cb) {
     gameDao.loadByTypeTime(options.type, options.fromDate, options.endDate,
-        function (err, results) {
+        function (err, list) {
             if (err) {
                 cb(new Error('db error'));
             } else {
-                cb(err, results);
+                list = list || [];
+
+                async.parallel({
+                    live: function (cb) {
+                        if (options.live) {
+                            if (list.length) {
+                                async.parallel(list.map(function (game) {
+                                    return function (cb) {
+                                        liveService.loadLiveByGameID(game.GameID, function (err, lives) {
+                                            game.lives = lives;
+                                            cb();
+                                        });
+                                    }
+                                }), cb);
+                            }
+                        } else {
+                            cb();
+                        }
+                    },
+                    replay: function (cb) {
+                        if (options.replay) {
+                            //TODO
+                        }
+                        cb();
+                    }
+                }, function () {
+                    if (options.shortName) {
+                        list.forEach(function (game) {
+                            game.hostShortName = teamService.short(game.HostName);
+                            game.visitShortName = teamService.short(game.VisitName);
+                        });
+                    }
+                    if (options.byDate) {
+                        var map = {};
+                        list.forEach(function (game) {
+                            var date = moment(game.Time).format('M月D日 ') + WEEK[game.Time.getDay()];
+                            if (!map[date]) {
+                                map[date] = [];
+                            }
+                            map[date].push(game);
+                        });
+                        cb(null, map);
+                    } else {
+                        cb(null, list);
+                    }
+                });
+
+
             }
         });
 };
@@ -83,14 +145,7 @@ exports.loadGamesByRoundID = function (roundId, cb) {
 exports.isToday = function (game) {
     var time = game.Time;
 
-    var today = new Date();
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
+    var d = date.duration(0);
 
-    var tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    return time >= +today && time < tomorrow;
+    return time >= +d.begin && time < d.end;
 };

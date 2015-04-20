@@ -18,3 +18,14 @@ exports.addLive = function (live, cb) {
     });
 };
 
+exports.loadLiveByGameID = function (gameId, cb) {
+    liveDAO.loadByGameID(gameId, function (err, list) {
+        if (err) {
+            cb(new Error('db error'));
+        } else {
+            cb(null, list);
+        }
+    });
+
+};
+

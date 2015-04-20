@@ -3,11 +3,13 @@ var async = require("async");
 var RoundEntity = require("../../../service/game_service/entity/round");
 var _ = require("underscore");
 var moment = require('moment');
+var date = require("../../../util/date_util");
 
 exports.execute = function (req, res) {
-    async.parallel([loadPlayOff], function (err, results) {
+    async.parallel([loadPlayOff, loadLiveList], function (err, results) {
         res.result('success', {
-            playOff: results[0]
+            playOff: results[0],
+            lives: results[1]
         });
     });
 };
@@ -181,11 +183,25 @@ var loadLiveData = function (area, cb) {
 };
 
 //直播列表
-var loadLiveList = function () {
+var loadLiveList = function (cb) {
+    var d = date.duration(7);
     gameService.loadGames({
+        type: 1,
+        fromDate: d.begin,
+        endDate: d.end,
+        live: true,
+        replay: true,
+        byDate: true,
+        shortName: true
+    }, function (err, games) {
+        games = games || {};
 
-    }, function (err, list) {
-
+        Object.keys(games).forEach(function (date) {
+            games[date].forEach(function (game) {
+                game.time = moment(game.Time).format("hh:mm");
+            });
+        });
+        cb(null, games);
     });
 };
 

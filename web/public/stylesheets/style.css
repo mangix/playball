@@ -1,6 +1,9 @@
 *{margin:0;padding:0}
+li{
+    list-style: none;
+}
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px/1.5 'Hiragino Sans GB','Microsoft YaHei',simsun
 }
 .Fix{zoom:1}.Fix:after{display:block;content:'\20';height:0;clear:both}
 
@@ -12,7 +15,8 @@ body {
 }
 
 .playoff{
-    padding: 20px 0 ;
+    margin: 50px 0 ;
+    position: relative;
 }
 .playoff .area{
     width:512px;
@@ -46,6 +50,9 @@ body {
     padding-left: 0;
     width: 90px;
     text-align: center;
+}
+.playoff .box.last{
+    margin-bottom: 0 !important;
 }
 
 .playoff .box .self-line,.playoff  .box .hor{
@@ -139,6 +146,15 @@ body {
     display: none;
 }
 
+.playoff .champion{
+    width:120px;
+    height: 120px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin:-60px 0 0 -60px;
+
+}
 
 /*球队颜色*/
 /*.box.gsw{*/
@@ -286,4 +302,33 @@ body {
 .box.bos .logo{
     background: url(./img/BOS.png) no-repeat 0 0;
     background-size: 20px 20px;
+}
+
+
+/**直播列表*/
+.lives {
+    padding-bottom: 50px;
+}
+.lives .date{
+    color: #ffffff;
+    font-size: 16px;
+    background-color: #08c;
+    line-height: 20px;
+    padding:10px 20px;
+    display: inline-block;
+    border-radius: 4px;
+}
+.lives .games{
+    padding:0 15px;
+}
+.lives .games li{
+    padding:15px 0;
+    border-bottom: dotted 1px #ccc;
+}
+.lives .games li:last-child{
+    border-bottom: none;
+}
+.lives .games li .link{
+    color:#08c;
+    margin-left:10px;
 }
