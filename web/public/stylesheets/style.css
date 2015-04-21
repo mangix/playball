@@ -1,59 +1,88 @@
-*{margin:0;padding:0}
-li{
+* {
+    margin: 0;
+    padding: 0
+}
+
+li {
     list-style: none;
 }
-body {
-  font: 14px/1.5 'Hiragino Sans GB','Microsoft YaHei',simsun
-}
-.Fix{zoom:1}.Fix:after{display:block;content:'\20';height:0;clear:both}
 
-.nav{
+body {
+    font: 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', simsun
+}
+
+.Fix {
+    zoom: 1
+}
+
+.Fix:after {
+    display: block;
+    content: '\20';
+    height: 0;
+    clear: both
+}
+
+.Title{
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 50px;
+    color: #ff8400;
+    border-bottom: solid 1px #eaeaea;
+
+}
+
+.nav {
     height: 100px;
 }
-.nav .inner{
+
+.nav .inner {
     width: 1024px;
     margin: 0 auto;
 }
-.nav .logo{
+
+.nav .logo {
     width: 355px;
     height: 100px;
 
     background: url(./img/logo.png) no-repeat 20px center;
 }
 
-.container{
+.container {
     width: 1026px;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
-.playoff{
-    padding: 50px 0 ;
+.playoff {
+    padding: 30px 0;
     position: relative;
     background: url(./img/playoffbg.png) center center no-repeat;
-    border-top:solid 1px #e0e0e0;
-    border-bottom: solid 1px #e0e0e0;
 }
-.playoff .area{
-    width:512px;
+
+.playoff .area {
+    width: 512px;
 
 }
-.playoff .west{
+
+.playoff .west {
     float: left;
 
 }
-.playoff .east{
+
+.playoff .east {
     float: right;
 }
-.playoff .west .round{
+
+.playoff .west .round {
     float: left;
 }
-.playoff .east .round{
+
+.playoff .east .round {
     float: right;
     margin-right: 0;
-    margin-left:20px ;
+    margin-left: 20px;
 }
 
-.playoff .box{
+.playoff .box {
     /*width:85px;*/
     /*border: solid 1px #ccc;*/
     height: 38px;
@@ -63,52 +92,58 @@ body {
     padding-left: 40px;
     font-size: 16px;
 }
-.playoff .east .box{
+
+.playoff .east .box {
     padding-left: 0;
     padding-right: 40px;
 }
 
-
-.playoff .box.null ,.playoff .box.live{
-    padding:0 20px;
+.playoff .box.null, .playoff .box.live {
+    padding: 0 20px;
     text-align: center;
 }
-.playoff .box.last{
+
+.playoff .box.last {
     margin-bottom: 0 !important;
 }
 
-.playoff .box .self-line,.playoff  .box .hor{
+.playoff .box .self-line, .playoff .box .hor {
     position: absolute;
-    width:10px;
-    border-top:solid 2px #ba0d0d;
+    width: 10px;
+    border-top: solid 2px #ba0d0d;
 }
-.playoff .box .ver{
+
+.playoff .box .ver {
     position: absolute;
-    top:20px;
-    border-left:solid 2px #ba0d0d ;
+    top: 20px;
+    border-left: solid 2px #ba0d0d;
 
 }
-.playoff .box .logo{
+
+.playoff .box .logo {
     width: 30px;
     height: 30px;
     position: absolute;
 
-    top:5px;
+    top: 5px;
 }
-.playoff .west .box .logo{
+
+.playoff .west .box .logo {
     left: 5px;
 }
 
-.playoff .east .box .logo{
+.playoff .east .box .logo {
     right: 5px;
 }
-.playoff .box .team{
+
+.playoff .box .team {
     white-space: nowrap;
-    width:60px;
+    width: 60px;
     display: inline-block;
     text-align: center;
 }
-.playoff .box .score{
+
+.playoff .box .score {
     display: inline-block;
     background: #ba0d0d;
     padding: 0 8px;
@@ -116,275 +151,317 @@ body {
     font-weight: bold;
     border-radius: 4px;
 }
-.playoff .west .box .score{
+
+.playoff .west .box .score {
     float: left;
 }
-.playoff .west .box .ver{
+
+.playoff .west .box .ver {
     right: -10px;
 }
-.playoff .east .box .ver{
+
+.playoff .east .box .ver {
     left: -10px;
 }
-.playoff .box .self-line{
-    top:50%;
+
+.playoff .box .self-line {
+    top: 50%;
 
 }
+
 .playoff .west .self-line {
     left: 100%;
 }
-.playoff .east .self-line{
+
+.playoff .east .self-line {
     right: 100%;
 }
-.playoff .box .hor{
-    top:60px;
+
+.playoff .box .hor {
+    top: 60px;
 
 }
-.playoff .west .box .hor{
-    right:-20px;
+
+.playoff .west .box .hor {
+    right: -20px;
 }
-.playoff .east .box .hor{
+
+.playoff .east .box .hor {
     left: -20px;
 }
 
-.playoff .round{
+.playoff .round {
     margin-right: 20px;
 }
 
-.playoff .round2{
+.playoff .round2 {
     padding-top: 40px;
 }
-.playoff .round3{
+
+.playoff .round3 {
     padding-top: 120px;
 }
-.playoff .round4{
+
+.playoff .round4 {
     padding-top: 280px;
 }
 
-.playoff .round1 .box{
+.playoff .round1 .box {
     margin-bottom: 40px;
 }
-.playoff .round2 .box{
+
+.playoff .round2 .box {
     margin-bottom: 120px;
 }
-.playoff .round3 .box{
+
+.playoff .round3 .box {
     margin-bottom: 280px;
 }
 
-.playoff .round2 .ver{
+.playoff .round2 .ver {
     height: 158px;
 }
-.playoff .round2 .hor{
-    top:100px;
+
+.playoff .round2 .hor {
+    top: 100px;
 }
-.playoff .round3 .ver{
+
+.playoff .round3 .ver {
     height: 318px;
 }
-.playoff .round3 .hor{
-    top:180px;
 
+.playoff .round3 .hor {
+    top: 180px;
 
 }
-.playoff .round4 .self-line{
+
+.playoff .round4 .self-line {
     display: none;
 }
 
-.playoff .champion{
-    width:128px;
+.playoff .champion {
+    width: 128px;
     height: 235px;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin:-118px 0 0 -64px;
+    margin: -118px 0 0 -64px;
 }
+
 /**减小round1 球队间距*/
-.round1 .box.even{
+.round1 .box.even {
     position: relative;
-    top:10px;
+    top: 10px;
 }
-.round1 .box.even .hor{
-    top:50px;
+
+.round1 .box.even .hor {
+    top: 50px;
 }
-.round1 .box.even .ver{
+
+.round1 .box.even .ver {
     height: 58px;
 }
-.round1 .box.odd{
+
+.round1 .box.odd {
     position: relative;
-    top:-10px;
+    top: -10px;
 }
 
 /*球队颜色*/
 /*.box.gsw{*/
-    /*background-color: #0d5dab;*/
-    /*color:#ddbe43;*/
-    /*border-color: #c8b43d;*/
+/*background-color: #0d5dab;*/
+/*color:#ddbe43;*/
+/*border-color: #c8b43d;*/
 /*}*/
 /*.box.nop{*/
-    /*background-color: #051c49;*/
-    /*color: #ffffff;*/
-    /*border-color: #ac122a;*/
+/*background-color: #051c49;*/
+/*color: #ffffff;*/
+/*border-color: #ac122a;*/
 /*}*/
 /*.box.por{*/
-    /*background-color: #251d1d;*/
-    /*color: #ffffff;*/
-    /*border-color: #dd2b2d;*/
+/*background-color: #251d1d;*/
+/*color: #ffffff;*/
+/*border-color: #dd2b2d;*/
 /*}*/
 /*.box.mem{*/
-    /*background-color: #14335b;*/
-    /*color: #ffffff;*/
-    /*border-color: #f9c02b;*/
+/*background-color: #14335b;*/
+/*color: #ffffff;*/
+/*border-color: #f9c02b;*/
 /*}*/
 /*.box.lac{*/
-    /*background-color: #0144a8;*/
-    /*color: #ffffff;*/
-    /*border-color: #8f326d;*/
+/*background-color: #0144a8;*/
+/*color: #ffffff;*/
+/*border-color: #8f326d;*/
 /*}*/
 /*.box.sas{*/
-    /*background-color: #cdd5da;*/
-    /*color: #000000;*/
-    /*border-color: #837f80;*/
+/*background-color: #cdd5da;*/
+/*color: #000000;*/
+/*border-color: #837f80;*/
 /*}*/
 /*.box.hou{*/
-    /*background-color: #c60032;*/
-    /*color: #ffffff;*/
-    /*border-color: #ffffff;*/
+/*background-color: #c60032;*/
+/*color: #ffffff;*/
+/*border-color: #ffffff;*/
 /*}*/
 /*.box.dal{*/
-    /*background-color: #086cb5;*/
-    /*color: #ffffff;*/
-    /*border-color: #21262e;*/
+/*background-color: #086cb5;*/
+/*color: #ffffff;*/
+/*border-color: #21262e;*/
 /*}*/
 /*.box.alt{*/
-    /*background-color: #122b53;*/
-    /*color: #ffffff;*/
-    /*border-color: #9a4d4f;*/
+/*background-color: #122b53;*/
+/*color: #ffffff;*/
+/*border-color: #9a4d4f;*/
 /*}*/
 /*.box.bkn{*/
-    /*background-color: #030303;*/
-    /*color: #ffffff;*/
-    /*border-color: #ffffff;*/
+/*background-color: #030303;*/
+/*color: #ffffff;*/
+/*border-color: #ffffff;*/
 /*}*/
 /*.box.tor{*/
-    /*background-color: #ce0235;*/
-    /*color: #ffffff;*/
-    /*border-color: #b34a60;*/
+/*background-color: #ce0235;*/
+/*color: #ffffff;*/
+/*border-color: #b34a60;*/
 /*}*/
 /*.box.was{*/
-    /*background-color: #ffffff;*/
-    /*color: #e7193a;*/
-    /*border-color: #7c2239;*/
+/*background-color: #ffffff;*/
+/*color: #e7193a;*/
+/*border-color: #7c2239;*/
 /*}*/
 /*.box.chi{*/
-    /*background-color: #cf0236;*/
-    /*color: #ffffff;*/
-    /*border-color: #000000;*/
+/*background-color: #cf0236;*/
+/*color: #ffffff;*/
+/*border-color: #000000;*/
 
 /*}*/
 /*.box.mil{*/
-    /*background-color: #0e4a22;*/
-    /*color: #ffffff;*/
-    /*border-color: #a65460;*/
+/*background-color: #0e4a22;*/
+/*color: #ffffff;*/
+/*border-color: #a65460;*/
 /*}*/
 /*.box.cle{*/
-    /*background-color: #8e0535;*/
-    /*color: #e29a29;*/
-    /*border-color: #d4812a;*/
+/*background-color: #8e0535;*/
+/*color: #e29a29;*/
+/*border-color: #d4812a;*/
 /*}*/
 /*.box.bos{*/
-    /*background-color: #118346;*/
-    /*color: #ffffff;*/
-    /*border-color: #ffffff;*/
+/*background-color: #118346;*/
+/*color: #ffffff;*/
+/*border-color: #ffffff;*/
 /*}*/
 
 /*球队颜色*/
-.box.gsw .logo{
+.box.gsw .logo {
     background: url(./img/GSW.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.nop .logo{
+
+.box.nop .logo {
     background: url(./img/NOH.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.por .logo{
+
+.box.por .logo {
     background: url(./img/POR.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.mem .logo{background: url(./img/MEN.png) no-repeat 0 0;
+
+.box.mem .logo {
+    background: url(./img/MEN.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.lac .logo{
+
+.box.lac .logo {
     background: url(./img/LAC.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.sas .logo{
+
+.box.sas .logo {
     background: url(./img/SAS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.hou .logo{
+
+.box.hou .logo {
     background: url(./img/HOU.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.dal .logo{
+
+.box.dal .logo {
     background: url(./img/DAL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.alt .logo{
+
+.box.alt .logo {
     background: url(./img/ATL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.bkn .logo{
+
+.box.bkn .logo {
     background: url(./img/BKN.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.tor .logo{
+
+.box.tor .logo {
     background: url(./img/TOR.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.was .logo{
+
+.box.was .logo {
     background: url(./img/WAS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.chi .logo{
+
+.box.chi .logo {
     background: url(./img/CHI.png) no-repeat 0 0;
     background-size: 30px 30px;
 
 }
-.box.mil .logo{background: url(./img/MIL.png) no-repeat 0 0;
+
+.box.mil .logo {
+    background: url(./img/MIL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.cle .logo{
+
+.box.cle .logo {
     background: url(./img/CLE.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
-.box.bos .logo{
+
+.box.bos .logo {
     background: url(./img/BOS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-
 /**直播列表*/
 .lives {
-    padding: 50px 0;
+    padding: 10px 0 ;
+    /*border: solid 1px #eaeaea;*/
 }
-.lives .date{
+
+.lives .date {
     color: #ffffff;
     font-size: 16px;
     background-color: #08c;
     line-height: 20px;
-    padding:10px 20px;
+    padding: 10px 20px;
     display: inline-block;
     border-radius: 4px;
 }
-.lives .games{
-    padding:0 15px;
+
+.lives .games {
+    padding: 0 15px;
 }
-.lives .games li{
-    padding:15px 0;
+
+.lives .games li {
+    padding: 15px 0;
     border-bottom: dotted 1px #ccc;
 }
-.lives .games li:last-child{
+
+.lives .games li:last-child {
     border-bottom: none;
 }
-.lives .games li .link{
-    color:#08c;
-    margin-left:10px;
+
+.lives .games li .link {
+    color: #08c;
+    margin-left: 10px;
 }
