@@ -13,7 +13,8 @@ block content
                                 if team.Type == 'null'
                                     span ?
                                 else if team.Type == "team"
-                                    span.logo
+                                    if j==0
+                                        span.logo
                                     span.team #{team.TeamName}
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
