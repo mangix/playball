@@ -98,6 +98,7 @@ body {
     padding: 0 8px;
     color: #ffffff;
     font-weight: bold;
+    border-radius: 4px;
 }
 .playoff .west .box .score{
     float: left;
