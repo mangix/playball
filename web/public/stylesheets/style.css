@@ -17,6 +17,7 @@ body {
 .playoff{
     margin: 50px 0 ;
     position: relative;
+    background: url(./img/playoffbg.png) center center no-repeat;
 }
 .playoff .area{
     width:512px;
@@ -37,18 +38,23 @@ body {
 }
 
 .playoff .box{
-    width:65px;
+    /*width:85px;*/
     /*border: solid 1px #ccc;*/
-    height: 40px;
+    height: 38px;
     line-height: 38px;
     position: relative;
     text-align: left;
     padding-left: 25px;
     font-size: 16px;
 }
-.playoff .box.null ,.playoff .box.live{
+.playoff .east .box{
     padding-left: 0;
-    width: 90px;
+    padding-right: 25px;
+}
+
+
+.playoff .box.null ,.playoff .box.live{
+    padding:0 20px;
     text-align: center;
 }
 .playoff .box.last{
@@ -61,21 +67,40 @@ body {
     border-top:solid 2px #ba0d0d;
 }
 .playoff .box .ver{
-    height: 80px;
     position: absolute;
     top:20px;
     border-left:solid 2px #ba0d0d ;
 
 }
 .playoff .box .logo{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    left: 2px;
-    top:10px;
+
+    top:5px;
+}
+.playoff .west .box .logo{
+    left: -10px;
+}
+
+.playoff .east .box .logo{
+    right: -10px;
 }
 .playoff .box .team{
     white-space: nowrap;
+    width:60px;
+    display: inline-block;
+    text-align: center;
+}
+.playoff .box .score{
+    display: inline-block;
+    background: #ba0d0d;
+    padding: 0 8px;
+    color: #ffffff;
+    font-weight: bold;
+}
+.playoff .west .box .score{
+    float: left;
 }
 .playoff .west .box .ver{
     right: -10px;
@@ -129,13 +154,13 @@ body {
 }
 
 .playoff .round2 .ver{
-    height: 160px;
+    height: 158px;
 }
 .playoff .round2 .hor{
     top:100px;
 }
 .playoff .round3 .ver{
-    height: 320px;
+    height: 318px;
 }
 .playoff .round3 .hor{
     top:180px;
@@ -147,13 +172,27 @@ body {
 }
 
 .playoff .champion{
-    width:120px;
-    height: 120px;
+    width:128px;
+    height: 235px;
     position: absolute;
     left: 50%;
     top: 50%;
-    margin:-60px 0 0 -60px;
-
+    margin:-118px 0 0 -64px;
+}
+/**减小round1 球队间距*/
+.round1 .box.even{
+    position: relative;
+    top:10px;
+}
+.round1 .box.even .hor{
+    top:50px;
+}
+.round1 .box.even .ver{
+    height: 58px;
+}
+.round1 .box.odd{
+    position: relative;
+    top:-10px;
 }
 
 /*球队颜色*/
@@ -242,66 +281,66 @@ body {
 /*球队颜色*/
 .box.gsw .logo{
     background: url(./img/GSW.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.nop .logo{
     background: url(./img/NOH.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.por .logo{
     background: url(./img/POR.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.mem .logo{background: url(./img/MEN.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.lac .logo{
     background: url(./img/LAC.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.sas .logo{
     background: url(./img/SAS.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.hou .logo{
     background: url(./img/HOU.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.dal .logo{
     background: url(./img/DAL.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.alt .logo{
     background: url(./img/ATL.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.bkn .logo{
     background: url(./img/BKN.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.tor .logo{
     background: url(./img/TOR.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.was .logo{
     background: url(./img/WAS.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.chi .logo{
     background: url(./img/CHI.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 
 }
 .box.mil .logo{background: url(./img/MIL.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.cle .logo{
     background: url(./img/CLE.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 .box.bos .logo{
     background: url(./img/BOS.png) no-repeat 0 0;
-    background-size: 20px 20px;
+    background-size: 30px 30px;
 }
 
 

@@ -9,12 +9,13 @@ block content
                 each round,j in area
                     .round(class="round#{j+1}")
                         each team,index in round
-                            .box(class= team && team.Type=='team' ? '#{team.cls}':'',class='#{team.Type}',class=index==round.length-1?'last':'')
+                            .box(class= team && team.Type=='team' ? '#{team.cls}':'',class='#{team.Type}',class=index==round.length-1?'last':'',class=index%2==0?'even':'odd')
                                 if team.Type == 'null'
                                     span ?
                                 else if team.Type == "team"
                                     span.logo
-                                    span.team #{team.TeamName}(#{team.TeamWin})
+                                    span.team #{team.TeamName}
+                                    span.score #{team.TeamWin}
                                 else if team.Type == "live"
                                     if team.live
                                         | #{team.live.parsedScore}
@@ -27,7 +28,7 @@ block content
 
         if !playOff.champion
             .champion
-                img(src='/images/rings/BbsImg142942566449709_640-640.png',width='100%',height='100%')
+                img(src='/stylesheets/img/obrein.jpg')
 
     .lives
         each list,date in lives
