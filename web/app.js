@@ -18,7 +18,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/playball/static', express.static(path.join(__dirname, 'public')));
 
 var sledge = require("express-sledge");
 sledge(app, require("./router.json"),path.join(__dirname, "routes"));
