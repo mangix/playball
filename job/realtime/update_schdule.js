@@ -66,7 +66,7 @@ function findScore(liveUrl, id, game) {
                 }
             }
             if (status) {
-                updateStatus(id, status, hs > vs ? game.HostID : game.VisitID, game);
+                updateStatus(id, status, +hs > +vs ? game.HostID : game.VisitID, game);
             }
 
         }
@@ -86,6 +86,9 @@ function updateScore(id, hs, vs) {
 }
 
 function updateStatus(id, status, winnerID, game) {
+    if(status!=2){
+        winnerID = 0;
+    }
     query("update playball.Game set ? where GameID=" + id, {
         Status: status,
         WinnerID: winnerID || 0
