@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    .Title 季后赛！
+    .Title PLAYOFF!
     .playoff.Fix
         - var list = [playOff.west , playOff.east];
 
@@ -32,7 +32,7 @@ block content
             .champion
                 img(src='/stylesheets/img/obrein.jpg')
 
-    .Title LIVE
+    .Title LIVE!
     .lives
         each list,date in lives
             .date #{date}
