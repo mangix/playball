@@ -1,8 +1,7 @@
 extends ../layout
 
 block content
-    .Title PLAYOFF!
-    .playoff.Fix
+    .playoff.Fix.inner
         - var list = [playOff.west , playOff.east];
 
         each area,i in list
@@ -32,8 +31,9 @@ block content
             .champion
                 img(src='/playball/static/stylesheets/img/obrein.jpg')
 
-    .Title LIVE!
-    .lives
+    .Title
+        .inner LIVE!
+    .lives.inner
         each list,date in lives
             .date #{date}
             ul.games
