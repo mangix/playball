@@ -19,7 +19,7 @@ block content
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
                                     if team.live
-                                        | #{team.live.parsedScore}
+                                        a.on
                                     else if team.next
                                         | #{team.next.displayTime}
                                 .self-line

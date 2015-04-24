@@ -60,6 +60,15 @@ body {
         -webkit-transform: translate(1px, -2px) rotate(-1deg)
     }
 }
+@-webkit-keyframes blink{
+    50% {
+        -webkit-transform:scale(0.8)
+    }
+    100%{
+        -webkit-transform:scale(1)
+    }
+}
+
 
 .Title {
     font-weight: bold;
@@ -175,6 +184,14 @@ body {
     position: absolute;
 
     top: 5px;
+}
+
+.playoff .box.live .on{
+    background: url(./img/video_live.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    -webkit-animation: blink 1s infinite linear;
 }
 
 .playoff .west .box .logo {
