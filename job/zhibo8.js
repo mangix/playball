@@ -72,6 +72,8 @@ var findLive = module.exports = function () {
     setTimeout(findLive,2*60*60*1000);
 };
 
+findLive();
+
 var matchGame = function (game, body) {
     var time = new Date(Date.parse(game.Time));
     var month = time.getMonth() + 1;
