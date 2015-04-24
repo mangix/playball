@@ -19,7 +19,7 @@ block content
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
                                     if team.live
-                                        a.on
+                                        a.on(href="#live_#{team.live.GameID}")
                                     else if team.next
                                         | #{team.next.displayTime}
                                 .self-line
@@ -38,7 +38,7 @@ block content
             .date #{date}
             ul.games
                 each game in list
-                    li #{game.time}
+                    li(id="live_#{game.GameID}") #{game.time}
                         b  #{game.hostShortName}
                             if game.Status !=0
                                 |  #{game.HostScore}
