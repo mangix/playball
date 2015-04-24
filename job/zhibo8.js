@@ -40,7 +40,7 @@ var teamsShortName = {
     '底特律活塞': '活塞'
 };
 
-(function () {
+var findLive = module.exports = function () {
     var today = new Date();
     today.setHours(0);
     today.setMinutes(0);
@@ -67,7 +67,10 @@ var teamsShortName = {
         });
 
     });
-})();
+
+    //2小时跑一次
+    setTimeout(findLive,2*60*60*1000);
+};
 
 var matchGame = function (game, body) {
     var time = new Date(Date.parse(game.Time));
