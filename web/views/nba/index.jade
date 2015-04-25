@@ -19,7 +19,7 @@ block content
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
                                     if team.live
-                                        if team.live.Status==1
+                                        if team.live.Status!=2
                                             a.on(href="#live_#{team.live.GameID}")
                                         else
                                             | #{team.live.parsedScore}
