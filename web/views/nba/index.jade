@@ -19,9 +19,12 @@ block content
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
                                     if team.live
-                                        a.on(href="#live_#{team.live.GameID}")
+                                        if team.live.Status==1
+                                            a.on(href="#live_#{team.live.GameID}")
+                                        else
+                                            | #{team.live.parsedScore}
                                     else if team.next
-                                        | #{team.next.displayTime}
+                                        | NEXT:#{team.next.displayTime}
                                 .self-line
                                 if index%2==0 && j<3
                                     .hor

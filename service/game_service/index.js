@@ -145,7 +145,7 @@ exports.loadGamesByRoundID = function (roundId, cb) {
 exports.isToday = function (game) {
     var time = game.Time;
 
-    var d = date.duration(0);
+    var d = date.duration(1);
 
     return time >= +d.begin && time < d.end;
 };

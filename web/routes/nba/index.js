@@ -147,6 +147,7 @@ var loadLiveData = function (area, cb) {
                 tasks[item.RoundID] = function (cb) {
                     gameService.loadGamesByRoundID(item.RoundID, function (err, gameList) {
                         var list = gameList || [];
+
                         var gameToday = list.filter(function (game) {
                             return gameService.isToday(game);
                         });

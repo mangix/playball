@@ -9,7 +9,7 @@ exports.duration = function (duration) {
     morning.setMilliseconds(0);
 
     var end = new Date(morning);
-    end.setDate(end.getDate() + duration - 1);
+    end.setDate(end.getDate() + duration-1);
     end.setHours(23);
     end.setMinutes(59);
     end.setSeconds(59);
