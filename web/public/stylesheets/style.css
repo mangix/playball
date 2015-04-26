@@ -170,13 +170,13 @@ body {
 .playoff .box .self-line, .playoff .box .hor {
     position: absolute;
     width: 10px;
-    border-top: solid 1px #F4A967;
+    border-top: solid 1px #ba0d0d;
 }
 
 .playoff .box .ver {
     position: absolute;
     top: 20px;
-    border-left: solid 1px #F4A967;
+    border-left: solid 1px #ba0d0d;
 
 }
 
@@ -213,7 +213,7 @@ body {
 
 .playoff .box .score {
     display: inline-block;
-    background: #F4A967;
+    background: #ba0d0d;
     padding: 0 8px;
     color: #ffffff;
     font-weight: bold;
