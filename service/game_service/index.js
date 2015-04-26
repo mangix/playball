@@ -5,6 +5,7 @@ var date = require("../../util/date_util");
 var async = require('async');
 var liveService = require("../live_service");
 var teamService = require("../team_service");
+var replayService = require("../replay_service");
 var moment = require("moment");
 var WEEK = {
     1: '周一',
@@ -79,9 +80,17 @@ exports.loadGames = function (options, cb) {
                     },
                     replay: function (cb) {
                         if (options.replay) {
-                            //TODO
+                            async.parallel(list.map(function (game) {
+                                return function (cb) {
+                                    replayService.loadReplayByGameID(game.GameID, function (err, replays) {
+                                        game.replays = replays;
+                                        cb();
+                                    });
+                                }
+                            }), cb);
+                        } else {
+                            cb();
                         }
-                        cb();
                     }
                 }, function () {
                     if (options.shortName) {

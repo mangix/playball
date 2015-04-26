@@ -1,4 +1,10 @@
-var Runner = require('./runner');
+/**
+ * 更新比赛状态Runner
+ *
+ * */
+
+
+var Runner = require('./runner')();
 var UPDATE_FREQUENCY = 40000; //每 40s  更新一次
 var query = require("../service/common/connection").query;
 

@@ -49,3 +49,14 @@ Create Table playball.PlayOff(
   Primary KEY (`RoundID`),
   index IX_Round_Season(`Round`,`Season`)
 )engine=innodb default charset=utf8 comment '季后赛对战表';
+
+Create Table playball.Replay(
+  `ReplayID` int  AUTO_INCREMENT NOT NULL Comment 'ReplayID',
+  `GameID` int NOT NULL COMMENT 'GameID',
+  `Title` varchar(200) NOT NULL COMMENT '比赛Title',
+  `Link` varchar(200) NOT NULL COMMENT '链接',
+  `Type` int NOT NULL DEFAULT 1 COMMENT '1 在线，2 下载',
+  Primary KEY (`ReplayID`),
+  index IX_GameID_Type(`GameID`,`Type`),
+  UNIQUE  KEY UK_GameID_Link(`GameID`,`Link`)
+)engine=innodb default charset=utf8 comment '录像表';

@@ -4,72 +4,83 @@
  * setSchedule --> addJob --> run
  * */
 
-//执行的jobs
-var jobs = [];
-//下次执行的时间间隔
-var lag = 0;
-//schedule,  作业执行的规则 , 此方法需要设置lag， 回掉finish方法
-var schedule = function (finish) {
-    finish();
-};
+module.exports = function () {
+    //创建一个Runner
+    //执行的jobs
+    var jobs = [];
+    //下次执行的时间间隔
+    var lag = 0;
 
-/**
- * 添加job
- * */
-exports.addJob = function (jobFn) {
-    jobs.push(jobFn);
-};
+    var runner = {};
 
-/**
- * 设置下次执行的时间
- * */
-var setLag = exports.setLag = function (l) {
-    lag = l;
-    console.log('set lag in ' + l);
-};
+    //schedule,  作业执行的规则 , 此方法需要设置lag， 回掉finish方法
+    var schedule = function (finish) {
+        finish();
+    };
 
-/**
- * 这是schedule
- * */
-var setSchedule = exports.setSchedule = function (sc) {
-    schedule = sc;
-};
+    /**
+     * 添加job
+     * */
+    runner.addJob = function (jobFn) {
+        jobs.push(jobFn);
+    };
 
-/**
- * run jobs
- * */
-var runJobs = function () {
-    jobs.forEach(function (job) {
-        job();
-    });
-    console.log('run ' + jobs.length + ' jobs');
-};
+    /**
+     * 设置下次执行的时间
+     * */
+    var setLag = runner.setLag = function (l) {
+        lag = l;
+        console.log('set lag in ' + l);
+    };
 
-/**
- * 启动容器
- * */
-var isStart = false;
-var isRunning = false;
-var run = exports.run = function () {
+    /**
+     * 这是schedule
+     * */
+    var setSchedule = runner.setSchedule = function (sc) {
+        schedule = sc;
+    };
 
-    if (isRunning) {
-        return;
-    }
-    schedule(function (isRun) {
-        isRun && runJobs();
-        setTimeout(run, lag);
-        isRunning = false;
-    });
-    isRunning = true;
-
-    if (!isStart) {
-        process.on('uncaughtException', function (err) {
-            console.error("uncaughtException:" + err);
-            setTimeout(run, lag);
+    /**
+     * run jobs
+     * */
+    var runJobs = function () {
+        jobs.forEach(function (job) {
+            job();
         });
-    }
-    isStart = true;
+        console.log('run ' + jobs.length + ' jobs');
+    };
+
+    /**
+     * 启动容器
+     * */
+    var isStart = false;
+    var isRunning = false;
+    var run = runner.run = function () {
+
+        if (isRunning) {
+            return;
+        }
+        schedule(function (isRun) {
+            isRun && runJobs();
+            setTimeout(run, lag);
+            isRunning = false;
+        });
+        isRunning = true;
+
+        if (!isStart) {
+            process.on('uncaughtException', function (err) {
+                console.error("uncaughtException:" + err);
+                setTimeout(run, lag);
+            });
+        }
+        isStart = true;
+    };
+
+    return runner;
+
 };
+
+
 
 
 

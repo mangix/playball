@@ -53,3 +53,7 @@ block content
                             each live in game.lives
                                 a.link(href="#{live.Link}",target='_blank') #{live.Name}
 
+                        if game.Status==2 && game.replays && game.replays.length
+                            each replay in game.replays
+                                a.link(href="#{replay.Link}",target='_blank') #{replay.Title}
+
