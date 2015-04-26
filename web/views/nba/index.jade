@@ -9,12 +9,12 @@ block content
                 each round,j in area
                     .round(class="round#{j+1}")
                         each team,index in round
-                            .box(class= team && team.Type=='team' ? '#{team.cls}':'',class='#{team.Type}',class=index==round.length-1?'last':'',class=index%2==0?'even':'odd')
+                            .box(class='#{team.Type}',class=index==round.length-1?'last':'',class=index%2==0?'even':'odd')
                                 if team.Type == 'null'
                                     span ?
                                 else if team.Type == "team"
                                     if j==0
-                                        span.logo
+                                        span.team_logo(class="#{team.cls}")
                                     span.team #{team.TeamName}
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
@@ -34,26 +34,48 @@ block content
             .champion
                 img(src='/playball/static/stylesheets/img/obrein.jpg')
 
+    //直播
     .Title
         .inner LIVE!
     .lives.inner
-        each list,date in lives
-            .date #{date}
-            ul.games
-                each game in list
-                    li(id="live_#{game.GameID}") #{game.time}
-                        b  #{game.hostShortName}
-                            if game.Status !=0
-                                |  #{game.HostScore}
-                            |  -
-                            if game.Status !=0
-                                |  #{game.VisitScore}
-                            |  #{game.visitShortName}
-                        if game.Status != 2 && game.lives && game.lives.length
-                            each live in game.lives
-                                a.link(href="#{live.Link}",target='_blank') #{live.Name}
+        .dates_holder.J_tab_t
+            each day,i in lives
+                a.date(href="javascript:void(0);",class=i==0?"on":"")
+                    | #{day.week}
+                    br
+                    | #{day.date}
+        .games_holder.J_tab_c
+            each day,i in lives
+                ul.games.Fix(class=i==0?"":"Hide")
+                    each game,j in day.list
+                        li(id="live_#{game.GameID}",class=j%2==1?"rightest":"")
+                            .title
+                                .clock
+                                | #{game.time}
+                            .main
+                                .team
+                                    .team_logo(class="#{game.hostCls}")
+                                    | #{game.hostShortName}
+                                    if game.Status !=0
+                                        span.score #{game.HostScore}
+                                .team
+                                    .team_logo(class="#{game.visitCls}")
+                                    | #{game.visitShortName}
+                                    if game.Status !=0
+                                        span.score #{game.VisitScore}
+                                .status
+                                    | #{game.Status==0?"未开始":(game.Status==1?"进行中":"已结束")}
 
-                        if game.Status==2 && game.replays && game.replays.length
-                            each replay in game.replays
-                                a.link(href="#{replay.Link}",target='_blank') #{replay.Title}
+                                if game.Status != 2 && game.lives && game.lives.length
+                                    .live.Fix
+                                        each live in game.lives
+                                            a.link(href="#{live.Link}",target='_blank') #{live.Name}
 
+                                if game.Status==2 && game.replays && game.replays.length
+                                    .live.Fix
+                                        each replay in game.replays
+                                            a.link(href="#{replay.Link}",target='_blank') #{replay.Title}
+
+
+block js
+    script(src="/playball/static/js/pages/nba_index.js")

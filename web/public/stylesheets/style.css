@@ -12,7 +12,10 @@ a{
 
 body {
     font: 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', simsun;
+}
 
+.Hide{
+    display: none !important;
 }
 
 .Fix {
@@ -109,7 +112,7 @@ body {
 
 .container {
     margin: 0 auto;
-    /*padding:120px 0;*/
+    padding:0 0 100px ;
 }
 
 .playoff {
@@ -180,13 +183,6 @@ body {
 
 }
 
-.playoff .box .logo {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-
-    top: 5px;
-}
 
 .playoff .box.live .on{
     background: url(./img/video_live.png) no-repeat 0 0;
@@ -196,11 +192,11 @@ body {
     -webkit-animation: blink 1s infinite linear;
 }
 
-.playoff .west .box .logo {
+.playoff .west .box .team_logo {
     left: 5px;
 }
 
-.playoff .east .box .logo {
+.playoff .east .box .team_logo {
     right: 5px;
 }
 
@@ -418,84 +414,93 @@ body {
 /*border-color: #ffffff;*/
 /*}*/
 
-/*球队颜色*/
-.box.gsw .logo {
+/*球队logo*/
+
+.team_logo{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top:50%;
+    margin-top:-15px;
+}
+
+.gsw.team_logo {
     background: url(./img/GSW.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.nop .logo {
+.nop.team_logo {
     background: url(./img/NOH.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.por .logo {
+.por.team_logo {
     background: url(./img/POR.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.mem .logo {
+.mem.team_logo {
     background: url(./img/MEN.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.lac .logo {
+.lac.team_logo {
     background: url(./img/LAC.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.sas .logo {
+.sas.team_logo {
     background: url(./img/SAS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.hou .logo {
+.hou.team_logo {
     background: url(./img/HOU.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.dal .logo {
+.dal.team_logo {
     background: url(./img/DAL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.alt .logo {
+.alt.team_logo {
     background: url(./img/ATL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.bkn .logo {
+.bkn.team_logo {
     background: url(./img/BKN.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.tor .logo {
+.tor.team_logo {
     background: url(./img/TOR.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.was .logo {
+.was.team_logo {
     background: url(./img/WAS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.chi .logo {
+.chi.team_logo {
     background: url(./img/CHI.png) no-repeat 0 0;
     background-size: 30px 30px;
 
 }
 
-.box.mil .logo {
+.mil.team_logo {
     background: url(./img/MIL.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.cle .logo {
+.cle.team_logo {
     background: url(./img/CLE.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
 
-.box.bos .logo {
+.bos.team_logo {
     background: url(./img/BOS.png) no-repeat 0 0;
     background-size: 30px 30px;
 }
@@ -505,34 +510,100 @@ body {
     /*padding: 15px 0 ;*/
     /*border: solid 1px #eaeaea;*/
 }
-
+.lives .dates_holder{
+    background-color: #cccccc;
+}
 .lives .date {
     color: #ffffff;
+
     font-size: 16px;
-    background-color: #08c;
+    text-align: center;
     line-height: 20px;
-    padding: 10px 20px;
+    padding: 10px 48px;
     display: inline-block;
-    border-radius: 4px;
+}
+.lives .date.on , .lives .date:hover{
+    background-color: #08c;
 }
 
 .lives .games {
-    padding: 0 15px 10px ;
+    padding: 10px 0;
 }
 
 .lives .games li {
-    padding: 15px 0;
-    border-bottom: dotted 1px #ccc;
+    float: left;
+    width:480px;
+    border: solid 1px #cccccc;
+    margin: 10px 60px 10px 0;
+    box-shadow: #cccccc 0 0  2px 0;
 }
 
-.lives .games li:last-child {
-    border-bottom: none;
+.lives .games li.rightest{
+    margin-right: 0;
 }
+
+.lives .games li .title{
+    line-height: 40px;
+    border-bottom: solid 1px #cccccc;
+    padding-left: 60px;
+    position: relative;
+}
+
+.lives .games li .clock{
+    width:24px;
+    height: 24px;
+    background: url(./img/clock.png) no-repeat 0 0;
+    position: absolute;
+    left: 20px;
+    top:50%;
+    margin-top: -12px;
+}
+
+.lives .games li .main{
+    position: relative;
+}
+
+.lives .games li .team{
+    padding: 15px 160px 15px 65px ;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    font-weight: bold;
+    border-bottom: solid 1px #cccccc;
+    font-size: 20px;
+}
+.lives .games li .score{
+    float: right;
+}
+.lives .games li .team .team_logo{
+    left: 20px;
+}
+.lives .games li .status{
+    position: absolute;
+    right: 0;
+    top:0;
+    background: #ffffff;
+    height: 140px;
+    line-height: 140px;
+    width: 140px;
+    text-align: center;
+    border-left:solid 1px #cccccc;
+}
+
+.lives .games .live{
+    padding: 10px;
+    line-height: 1.5;
+}
+
+
 
 .lives .games li .link {
     color: #08c;
-    margin-left: 10px;
-    font-size:13px;
+    font-size:14px;
+    float: left;
+    margin-right: 10px;
+    line-height: 25px;
+    min-width:130px;
 }
 .lives .games li .link:hover{
     text-decoration: underline;

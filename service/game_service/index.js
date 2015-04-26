@@ -7,15 +7,7 @@ var liveService = require("../live_service");
 var teamService = require("../team_service");
 var replayService = require("../replay_service");
 var moment = require("moment");
-var WEEK = {
-    1: '周一',
-    2: '周二',
-    3: '周三',
-    4: '周四',
-    5: '周五',
-    6: '周六',
-    0: '周日'
-};
+
 /**
  * add a game
  *
@@ -102,11 +94,11 @@ exports.loadGames = function (options, cb) {
                     if (options.byDate) {
                         var map = {};
                         list.forEach(function (game) {
-                            var date = moment(game.Time).format('M月D日 ') + WEEK[game.Time.getDay()];
-                            if (!map[date]) {
-                                map[date] = [];
+                            var d = +date.morning(game.Time);
+                            if (!map[d]) {
+                                map[d] = [];
                             }
-                            map[date].push(game);
+                            map[d].push(game);
                         });
                         cb(null, map);
                     } else {

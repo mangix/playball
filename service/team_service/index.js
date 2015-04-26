@@ -31,6 +31,29 @@ var teamsShortName = {
     '底特律活塞': '活塞'
 };
 
+var Name_CLS = {
+    '勇士': 'gsw',
+    '鹈鹕': 'nop',
+    '开拓者': 'por',
+    '灰熊': 'mem',
+    '快船': 'lac',
+    '马刺': 'sas',
+    '火箭': 'hou',
+    '小牛': 'dal',
+    '猛龙': 'tor',
+    '凯尔特人': 'bos',
+    '篮网': 'bkn',
+    '老鹰': 'alt',
+    '奇才': 'was',
+    '骑士': 'cle',
+    '公牛': 'chi',
+    '雄鹿': 'mil'
+};
+
 exports.short = function (teamName) {
     return teamsShortName[teamName];
+};
+
+exports.logoCls = function(teamShortName){
+    return Name_CLS[ exports.short(teamShortName) || teamShortName];
 };

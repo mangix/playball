@@ -1,9 +1,11 @@
 var gameService = require("../../../service/game_service");
+var teamService = require("../../../service/team_service");
 var async = require("async");
 var RoundEntity = require("../../../service/game_service/entity/round");
 var _ = require("underscore");
 var moment = require('moment');
-var date = require("../../../util/date_util");
+var dateUtil = require("../../../util/date_util");
+
 
 exports.execute = function (req, res) {
     async.parallel([loadPlayOff, loadLiveList], function (err, results) {
@@ -50,7 +52,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.HostRank,
                 TeamWin: round.HostWin,
                 Type: 'team',
-                cls: CLS_MAP[round.HostID]
+                cls:teamService.logoCls(round.HostName)
             };
             var visit = {
                 TeamID: round.VisitID,
@@ -58,7 +60,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.VisitRank,
                 TeamWin: round.VisitWin,
                 Type: 'team',
-                cls: CLS_MAP[round.VisitID]
+                cls:teamService.logoCls(round.VisitName)
             };
 
             var thisArray = data[area][round.Round - 1];
@@ -185,7 +187,7 @@ var loadLiveData = function (area, cb) {
 
 //直播列表
 var loadLiveList = function (cb) {
-    var d = date.duration(7);
+    var d = dateUtil.duration(7);
     gameService.loadGames({
         type: 1,
         fromDate: d.begin,
@@ -197,31 +199,26 @@ var loadLiveList = function (cb) {
     }, function (err, games) {
         games = games || {};
 
-        Object.keys(games).forEach(function (date) {
+        //转成数组， 保证顺序
+        var list = Object.keys(games).map(function (date) {
             games[date].forEach(function (game) {
                 game.time = moment(game.Time).format("hh:mm");
+                game.hostCls = teamService.logoCls(game.HostName);
+                game.visitCls = teamService.logoCls(game.VisitName);
             });
+            return {
+                date: moment(new Date(+date)).format('MM-DD'),
+                week: dateUtil.week(date,true),
+                list: games[date]
+            }
+        }).sort(function (o1, o2) {
+            return o1.date - o2.date;
         });
-        cb(null, games);
+
+
+        cb(null, list);
     });
 };
 
-var CLS_MAP = {
-    1: 'gsw',
-    8: 'nop',
-    4: 'por',
-    5: 'mem',
-    3: 'lac',
-    6: 'sas',
-    2: 'hou',
-    7: 'dal',
-    16: 'tor',
-    17: 'bos',
-    18: 'bkn',
-    21: 'alt',
-    22: 'was',
-    26: 'cle',
-    27: 'chi',
-    28: 'mil'
-};
+
 
