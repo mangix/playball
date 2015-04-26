@@ -1,8 +1,8 @@
 var request = require("request");
 var cheerio = require("cheerio");
 
-var gameService = require("../service/game_service");
-var liveService = require("../service/live_service");
+var gameService = require("../../service/game_service/index");
+var liveService = require("../../service/live_service/index");
 
 var URL = 'http://www.zhibo8.cc';
 
@@ -67,9 +67,6 @@ var findLive = module.exports = function () {
         });
 
     });
-
-    //2小时跑一次
-    setTimeout(findLive,2*60*60*1000);
 };
 
 findLive();

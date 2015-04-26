@@ -23,7 +23,7 @@ exports.loadReplayByGameID = function (gameId, cb) {
         if (err) {
             cb(new Error('db error'));
         } else {
-            cb(null, list);
+            cb(null, (list || []));
         }
     });
 };
