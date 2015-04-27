@@ -74,50 +74,59 @@ var findReplay = function (games) {
                     //继续爬详情页
                     CopyCat(url.resolve(URL, link), function ($) {
                         var qq = $('#videopartlist .qq');
+                        var sina = $('#videopartlist .sina');
+
                         if (qq.length) {
-                            var links = $("#videopartlist .pc_link");
-                            if (links.length && links.length == 4) {
-                                var tasks = [];
-                                links.each(function (i, link) {
-                                    tasks.push(function (cb) {
-                                        CopyCat(url.resolve(URL, $(link).attr("href")), function ($) {
-                                            var qqUrl = $('#objVideo param[name="movie"]');
-                                            if (qqUrl.length) {
-                                                cb(null , {
-                                                    GameID: game.GameID,
-                                                    Type: 1,
-                                                    Link: qqUrl.attr("value"),
-                                                    Title: "[QQ]" + numToText(1 + i)
-                                                });
-                                            } else {
-                                                cb();
-                                            }
-                                        });
-                                    });
-                                });
-                                async.parallel(tasks, function (err, results) {
-                                    if (err) {
-                                        return;
-                                    }
-                                    async.series(results.map(function (data) {
-                                        return function (cb) {
-                                            if (data) {
-                                                ReplayService.addReplay(data, function () {
-                                                    cb();
-                                                })
-                                            } else {
-                                                cb();
-                                            }
-                                        }
-                                    }));
-                                });
-                            }
+                            saveVideos($,qq.parents("dl").find(".pc_link"), game,"QQ");
+                        }
+
+                        if(sina.length){
+                            saveVideos($,sina.parents('dl').find(".pc_link"),game,"新浪");
                         }
                     });
                 }
             });
         });
     });
+};
+
+var saveVideos = function($,links,game,source){
+    if (links.length && links.length == 4) {
+        var tasks = [];
+        links.each(function (i, link) {
+            tasks.push(function (cb) {
+                CopyCat(url.resolve(URL, $(link).attr("href")), function ($) {
+                    var qqUrl = $('#objVideo param[name="movie"]');
+                    if (qqUrl.length) {
+                        cb(null , {
+                            GameID: game.GameID,
+                            Type: 1,
+                            Link: qqUrl.attr("value"),
+                            Title: "["+source+"]" + numToText(1 + i)
+                        });
+                    } else {
+                        cb();
+                    }
+                });
+            });
+        });
+        async.parallel(tasks, function (err, results) {
+            if (err) {
+                return;
+            }
+            async.series(results.map(function (data) {
+                return function (cb) {
+                    if (data) {
+                        ReplayService.addReplay(data, function () {
+                            cb();
+                        })
+                    } else {
+                        cb();
+                    }
+                }
+            }));
+        });
+    }
 };
 
 var numToText = function (i) {
