@@ -10,7 +10,7 @@
 var Runner = require('./runner')();
 
 Runner.setSchedule(function (finish) {
-    Runner.setLag(60 * 60 * 1000);
+    Runner.setLag(30 * 60 * 1000);
 //    Runner.setLag(20 * 1000);
     finish(true);
 });
