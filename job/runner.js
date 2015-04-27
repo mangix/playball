@@ -60,12 +60,13 @@ module.exports = function () {
         if (isRunning) {
             return;
         }
+        isRunning = true;
         schedule(function (isRun) {
             isRun && runJobs();
             setTimeout(run, lag);
             isRunning = false;
         });
-        isRunning = true;
+
 
         if (!isStart) {
             process.on('uncaughtException', function (err) {
