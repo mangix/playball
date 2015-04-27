@@ -193,11 +193,11 @@ body {
 }
 
 .playoff .west .box .team_logo {
-    left: 5px;
+    left: -5px;
 }
 
 .playoff .east .box .team_logo {
-    right: 5px;
+    right: -5px;
 }
 
 .playoff .box .team {
@@ -417,93 +417,14 @@ body {
 /*球队logo*/
 
 .team_logo{
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 42px;
     position: absolute;
     top:50%;
-    margin-top:-15px;
+    margin-top:-21px;
 }
 
-.gsw.team_logo {
-    background: url(./img/GSW.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
 
-.nop.team_logo {
-    background: url(./img/NOH.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.por.team_logo {
-    background: url(./img/POR.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.mem.team_logo {
-    background: url(./img/MEN.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.lac.team_logo {
-    background: url(./img/LAC.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.sas.team_logo {
-    background: url(./img/SAS.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.hou.team_logo {
-    background: url(./img/HOU.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.dal.team_logo {
-    background: url(./img/DAL.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.alt.team_logo {
-    background: url(./img/ATL.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.bkn.team_logo {
-    background: url(./img/BKN.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.tor.team_logo {
-    background: url(./img/TOR.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.was.team_logo {
-    background: url(./img/WAS.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.chi.team_logo {
-    background: url(./img/CHI.png) no-repeat 0 0;
-    background-size: 30px 30px;
-
-}
-
-.mil.team_logo {
-    background: url(./img/MIL.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.cle.team_logo {
-    background: url(./img/CLE.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
-
-.bos.team_logo {
-    background: url(./img/BOS.png) no-repeat 0 0;
-    background-size: 30px 30px;
-}
 
 /**直播列表*/
 .lives {
@@ -564,7 +485,7 @@ body {
 }
 
 .lives .games li .team{
-    padding: 15px 160px 15px 65px ;
+    padding: 15px 160px 15px 75px ;
     height: 40px;
     line-height: 40px;
     position: relative;

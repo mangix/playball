@@ -1,59 +1,27 @@
-var teamsShortName = {
-    "金州勇士": "勇士",
-    '休斯顿火箭': '火箭',
-    '洛杉矶快船': '快船',
-    "波特兰开拓者": "开拓者",
-    "孟菲斯灰熊": '灰熊',
-    "圣安东尼奥马刺": '马刺',
-    '达拉斯小牛': '小牛',
-    '新奥尔良鹈鹕': '鹈鹕',
-    '俄克拉荷马城雷霆': '雷霆',
-    '菲尼克斯太阳': '太阳',
-    '犹他爵士': '爵士',
-    '丹佛掘金': '掘金',
-    '洛杉矶湖人': '湖人',
-    '明尼苏达森林狼': '森林狼',
-    '萨克拉门托国王': '国王',
-    '多伦多猛龙': '猛龙',
-    '波士顿凯尔特人': '凯尔特人',
-    '布鲁克林篮网': '篮网',
-    '费城76人': '76人',
-    '纽约尼克斯': '尼克斯',
-    '亚特兰大老鹰': '老鹰',
-    '华盛顿奇才': '奇才',
-    '迈阿密热火': '热火',
-    '夏洛特黄蜂': '黄蜂',
-    '奥兰多魔术': '魔术',
-    '克利夫兰骑士': '骑士',
-    '芝加哥公牛': "公牛",
-    '密尔沃基雄鹿': '雄鹿',
-    '印第安纳步行者': '步行者',
-    '底特律活塞': '活塞'
-};
+var teams = [];
+var teamDAO = require("./dao/team");
 
-var Name_CLS = {
-    '勇士': 'gsw',
-    '鹈鹕': 'nop',
-    '开拓者': 'por',
-    '灰熊': 'mem',
-    '快船': 'lac',
-    '马刺': 'sas',
-    '火箭': 'hou',
-    '小牛': 'dal',
-    '猛龙': 'tor',
-    '凯尔特人': 'bos',
-    '篮网': 'bkn',
-    '老鹰': 'alt',
-    '奇才': 'was',
-    '骑士': 'cle',
-    '公牛': 'chi',
-    '雄鹿': 'mil'
-};
+//load teams
+teamDAO.loadAllTeam(function (err, list) {
+    teams = list || [];
+});
 
 exports.short = function (teamName) {
-    return teamsShortName[teamName];
+    var team = teams.filter(function (t) {
+        return t.Name == teamName
+    });
+    return (team[0] && team[0].ShortName )|| '';
 };
 
-exports.logoCls = function(teamShortName){
-    return Name_CLS[ exports.short(teamShortName) || teamShortName];
+exports.logo = function (teamShortName) {
+    teamShortName = exports.short(teamShortName) || teamShortName;
+
+    var team = teams.filter(function (t) {
+        return t.ShortName == teamShortName;
+    });
+    if(team.length){
+        return "/playball/static/images/logo/"+ team[0].Logo;
+    }else{
+        return "";
+    }
 };

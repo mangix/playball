@@ -14,7 +14,7 @@ block content
                                     span ?
                                 else if team.Type == "team"
                                     if j==0
-                                        span.team_logo(class="#{team.cls}")
+                                        img.team_logo(src="#{team.logo}")
                                     span.team #{team.TeamName}
                                     span.score #{team.TeamWin}
                                 else if team.Type == "live"
@@ -54,12 +54,12 @@ block content
                                 | #{game.time}
                             .main
                                 .team
-                                    .team_logo(class="#{game.hostCls}")
+                                    img.team_logo(src="#{game.hostLogo}")
                                     | #{game.hostShortName}
                                     if game.Status !=0
                                         span.score #{game.HostScore}
                                 .team
-                                    .team_logo(class="#{game.visitCls}")
+                                    img.team_logo(src="#{game.visitLogo}")
                                     | #{game.visitShortName}
                                     if game.Status !=0
                                         span.score #{game.VisitScore}

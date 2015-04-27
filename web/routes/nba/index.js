@@ -52,7 +52,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.HostRank,
                 TeamWin: round.HostWin,
                 Type: 'team',
-                cls:teamService.logoCls(round.HostName)
+                logo:teamService.logo(round.HostName)
             };
             var visit = {
                 TeamID: round.VisitID,
@@ -60,7 +60,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.VisitRank,
                 TeamWin: round.VisitWin,
                 Type: 'team',
-                cls:teamService.logoCls(round.VisitName)
+                logo:teamService.logo(round.VisitName)
             };
 
             var thisArray = data[area][round.Round - 1];
@@ -203,8 +203,8 @@ var loadLiveList = function (cb) {
         var list = Object.keys(games).map(function (date) {
             games[date].forEach(function (game) {
                 game.time = moment(game.Time).format("hh:mm");
-                game.hostCls = teamService.logoCls(game.HostName);
-                game.visitCls = teamService.logoCls(game.VisitName);
+                game.hostLogo = teamService.logo(game.HostName);
+                game.visitLogo = teamService.logo(game.VisitName);
             });
             return {
                 date: moment(new Date(+date)).format('MM-DD'),
