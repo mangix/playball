@@ -10,8 +10,11 @@ var moment = require("moment");
 
 var async = require('async');
 
-var job = function () {
-    query("select * from playball.game where ThirdID = 0", function (error, results) {
+module.exports = function () {
+    query("select * from playball.Game where ThirdID = 0", function (error, results) {
+        if (err) {
+            return;
+        }
         if (results.length) {
             async.parallel(results.map(function (game) {
                 return function (cb) {
@@ -39,7 +42,7 @@ var job = function () {
 
                                 }
                             });
-                            if(!found){
+                            if (!found) {
                                 cb();
                             }
                         } else {
@@ -48,14 +51,7 @@ var job = function () {
                     });
                 }
             }), function () {
-                process.exit(1);
             });
-
-        } else {
-            process.exit(0);
         }
     });
-
 };
-
-job();
