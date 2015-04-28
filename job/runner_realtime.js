@@ -4,7 +4,7 @@
  * */
 
 
-var Runner = require('./runner')();
+var Runner = require('./runner')("real-time");
 var UPDATE_FREQUENCY = 40000; //每 40s  更新一次
 var query = require("../service/common/connection").query;
 

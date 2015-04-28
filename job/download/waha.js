@@ -12,7 +12,9 @@ var URL = 'http://www.52waha.com';
 var url = require("url");
 var async = require('async');
 
-module.exports = function () {
+var log = console.log;
+module.exports = function (runner) {
+    log = runner && runner.log || console.log;
     GameService.loadGames({
         type: 1,
         fromDate: date.duration(1).begin,
@@ -46,7 +48,7 @@ var findDownload = function (games) {
             list.each(function (i, titleEl) {
                 var link = titleMatch($(titleEl), game);
                 if (link) {
-                    console.log("match:", game.HostName, game.VisitName, link);
+                    log("match:", game.HostName, game.VisitName, link);
 
 
                     ReplayService.addReplay({
@@ -69,7 +71,7 @@ var findReplay = function (games) {
             list.each(function (i, titleEl) {
                 var link = titleMatch($(titleEl), game);
                 if (link) {
-                    console.log("video:", game.HostName, game.VisitName, link);
+                    log("video:", game.HostName, game.VisitName, link);
 
                     //继续爬详情页
                     CopyCat(url.resolve(URL, link), function ($) {
@@ -96,10 +98,16 @@ var findReplay = function (games) {
 };
 
 var saveVideos = function($,links,game,source){
-    if (links.length && links.length == 4) {
+    if (links.length) {
         var tasks = [];
         links.each(function (i, link) {
             tasks.push(function (cb) {
+                var textMatch = $(link).parent().text().match(/\[([^\[\]]+)\]/);
+                var text = "在线录像";
+                if(textMatch){
+                    text = textMatch[1].trim();
+                }
+
                 CopyCat(url.resolve(URL, $(link).attr("href")), function ($) {
                     var qqUrl = $('#objVideo param[name="movie"]');
                     if (qqUrl.length) {
@@ -107,7 +115,7 @@ var saveVideos = function($,links,game,source){
                             GameID: game.GameID,
                             Type: 1,
                             Link: qqUrl.attr("value"),
-                            Title: "["+source+"]" + numToText(1 + i)
+                            Title: "["+source+"]" + text
                         });
                     } else {
                         cb();
@@ -134,11 +142,3 @@ var saveVideos = function($,links,game,source){
     }
 };
 
-var numToText = function (i) {
-    return {
-        "1": "第一节",
-        "2": "第二节",
-        "3": "第三节",
-        "4": "第四节"
-    }[i];
-};

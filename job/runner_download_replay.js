@@ -7,7 +7,7 @@
  * */
 
 
-var Runner = require('./runner')();
+var Runner = require('./runner')("replay and live info");
 
 Runner.setSchedule(function (finish) {
     Runner.setLag(30 * 60 * 1000);

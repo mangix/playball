@@ -7,7 +7,7 @@
  * */
 
 
-var Runner = require('./runner')();
+var Runner = require('./runner')("ThirdID finder");
 
 Runner.setSchedule(function (finish) {
     Runner.setLag(12 * 60 * 60 * 1000);

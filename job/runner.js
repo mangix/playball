@@ -4,7 +4,10 @@
  * setSchedule --> addJob --> run
  * */
 
-module.exports = function () {
+var moment = require("moment");
+var id = 0;
+
+module.exports = function (jobName) {
     //创建一个Runner
     //执行的jobs
     var jobs = [];
@@ -18,6 +21,8 @@ module.exports = function () {
         finish();
     };
 
+    var _id = ++id;
+
     /**
      * 添加job
      * */
@@ -30,7 +35,7 @@ module.exports = function () {
      * */
     var setLag = runner.setLag = function (l) {
         lag = l;
-        console.log('set lag in ' + l);
+        this.log('set lag in ' + l);
     };
 
     /**
@@ -45,9 +50,9 @@ module.exports = function () {
      * */
     var runJobs = function () {
         jobs.forEach(function (job) {
-            job();
+            job.call(runner,runner);
         });
-        console.log('run ' + jobs.length + ' jobs');
+        runner.log('run ' + jobs.length + ' jobs');
     };
 
     /**
@@ -56,6 +61,8 @@ module.exports = function () {
     var isStart = false;
     var isRunning = false;
     var run = runner.run = function () {
+
+        this.log("start runner " + jobName + "..");
 
         if (isRunning) {
             return;
@@ -75,6 +82,12 @@ module.exports = function () {
             });
         }
         isStart = true;
+    };
+
+    runner.log = function () {
+        var args = Array.prototype.slice.call(arguments, 0);
+        args.unshift("[" + moment(new Date()).format("YY-MM-DD hh:mm:ss") + " " + jobName + "] ");
+        console.log.apply(console, args);
     };
 
     return runner;

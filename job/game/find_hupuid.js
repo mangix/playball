@@ -9,13 +9,18 @@ var request = require("request");
 var moment = require("moment");
 
 var async = require('async');
+var log;
+module.exports = function (runner) {
+    log = runner && runner.log || console.log;
 
-module.exports = function () {
     query("select * from playball.Game where ThirdID = 0", function (error, results) {
         if (error) {
             return;
         }
         if (results.length) {
+
+            log("find " + results.length + " ThirdID is 0");
+
             async.parallel(results.map(function (game) {
                 return function (cb) {
                     var date = moment(game.Time).format('YYYY-MM-DD');
@@ -43,6 +48,7 @@ module.exports = function () {
                                 }
                             });
                             if (!found) {
+                                log(date + " not found ThirdID");
                                 cb();
                             }
                         } else {

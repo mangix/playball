@@ -39,8 +39,10 @@ var teamsShortName = {
     '印第安纳步行者': '步行者',
     '底特律活塞': '活塞'
 };
+var log;
 
-var findLive = module.exports = function () {
+var findLive = module.exports = function (runner) {
+    log = runner && runner.log || console.log;
     var today = new Date();
     today.setHours(0);
     today.setMinutes(0);
@@ -139,6 +141,6 @@ var addLive = function (game, name, link) {
         Link: link,
         Type: ~name.indexOf('文字') ? 2 : (~name.indexOf('比分') ? 3 : 1)
     }, function () {
-        console.log('add :' + game.GameID + " " + game.HostName + "-" + game.VisitName + " " + name + " " + link);
+        log('add :' + game.GameID + " " + game.HostName + "-" + game.VisitName + " " + name + " " + link);
     });
 };

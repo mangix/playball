@@ -7,8 +7,9 @@ var request = require("request");
 //var dom = require("jsdom");
 var cheerio = require("cheerio");
 
-
-module.exports = function () {
+var log;
+module.exports = function (runner) {
+    log = runner && runner.log || console.log;
     var today = new Date();
     today.setHours(0);
     today.setMinutes(0);
@@ -37,7 +38,7 @@ module.exports = function () {
 
 
 function findScore(liveUrl, id, game) {
-    console.log("request hupu game page " + liveUrl + " to get score.. ");
+    log("request hupu game page " + liveUrl + " to get score.. ");
 
     request(liveUrl, function (errors, response, body) {
         if (!errors && response && response.statusCode == 200) {
@@ -80,7 +81,7 @@ function updateScore(id, hs, vs) {
         VisitScore: vs
     }, function (err) {
         if (err) {
-            console.log(err);
+            log(err);
         }
     });
 }
@@ -94,7 +95,7 @@ function updateStatus(id, status, winnerID, game) {
         WinnerID: winnerID || 0
     }, function (err) {
         if (err) {
-            console.log(err);
+            log(err);
         } else {
             if (status == 2 && game && game.IsPlayOff == 1 && game.RoundID) {
                 query('select * from playball.PlayOff where RoundID = ?', [game.RoundID], function (err, round) {
@@ -103,7 +104,7 @@ function updateStatus(id, status, winnerID, game) {
                         var key = winnerID == round.HostID ? 'HostWin' : 'VisitWin';
                         query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ?', [game.RoundID], function (e) {
                             if (e) {
-                                console.log(e);
+                                log(e);
                             }
                         });
                     }
