@@ -210,15 +210,11 @@ var loadLiveList = function (cb) {
                 date: moment(new Date(+date)).format('MM-DD'),
                 week: dateUtil.week(date,true),
                 list: games[date]
-            }
+            };
         }).sort(function (o1, o2) {
             return o1.date - o2.date;
         });
 
-
         cb(null, list);
     });
 };
-
-
-
