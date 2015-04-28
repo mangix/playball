@@ -12,7 +12,7 @@ var async = require('async');
 
 module.exports = function () {
     query("select * from playball.Game where ThirdID = 0", function (error, results) {
-        if (err) {
+        if (error) {
             return;
         }
         if (results.length) {
