@@ -75,6 +75,7 @@ var findReplay = function (games) {
                     CopyCat(url.resolve(URL, link), function ($) {
                         var qq = $('#videopartlist .qq');
                         var sina = $('#videopartlist .sina');
+                        var cntv = $("#videopartlist .cntv");
 
                         if (qq.length) {
                             saveVideos($,qq.parents("dl").find(".pc_link"), game,"QQ");
@@ -82,6 +83,10 @@ var findReplay = function (games) {
 
                         if(sina.length){
                             saveVideos($,sina.parents('dl').find(".pc_link"),game,"新浪");
+                        }
+
+                        if(cntv.length){
+                            saveVideos($,cntv.parents('dl').find(".pc_link"),game,"cntv");
                         }
                     });
                 }
