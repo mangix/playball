@@ -62,7 +62,7 @@ module.exports = function (jobName) {
     var isRunning = false;
     var run = runner.run = function () {
 
-        this.log("start runner " + jobName + "..");
+        runner.log("start runner " + jobName + "..");
 
         if (isRunning) {
             return;
@@ -77,7 +77,7 @@ module.exports = function (jobName) {
 
         if (!isStart) {
             process.on('uncaughtException', function (err) {
-                console.error("uncaughtException:" + err);
+                console.error("uncaughtException:" + err.stack);
                 setTimeout(run, lag);
             });
         }

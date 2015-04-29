@@ -4,7 +4,6 @@
 var query = require("../../service/common/connection").query;
 
 var request = require("request");
-//var dom = require("jsdom");
 var cheerio = require("cheerio");
 
 var log;
@@ -28,7 +27,8 @@ module.exports = function (runner) {
                     updateStatus(game.GameID, 1);
                 }
                 if (game.Status == 1) {
-                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
+//                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
+                    findScore("http://g.hupu.com/nba/homepage/getMatchBasicInfo?matchId="+game.ThirdID, game.GameID, game);
                 }
 
             });
@@ -42,7 +42,12 @@ function findScore(liveUrl, id, game) {
 
     request(liveUrl, function (errors, response, body) {
         if (!errors && response && response.statusCode == 200) {
-            var $ = cheerio.load(body);
+            var json = JSON.parse(body);
+            if(json.status != 200){
+
+                return;
+            }
+            var $ = cheerio.load(json.html);
             //比分
             var hs = "0" , vs = "0";
             var HostScoreBox = $(".team_vs_box .team_a h2").eq(0);
