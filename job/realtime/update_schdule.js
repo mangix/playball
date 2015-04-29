@@ -27,8 +27,8 @@ module.exports = function (runner) {
                     updateStatus(game.GameID, 1);
                 }
                 if (game.Status == 1) {
-//                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
-                    findScore("http://g.hupu.com/nba/homepage/getMatchBasicInfo?matchId="+game.ThirdID, game.GameID, game);
+                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
+//                    findScore("http://g.hupu.com/nba/homepage/getMatchBasicInfo?matchId="+game.ThirdID, game.GameID, game);
                 }
 
             });
@@ -42,45 +42,40 @@ function findScore(liveUrl, id, game) {
 
     request(liveUrl, function (errors, response, body) {
         if (!errors && response && response.statusCode == 200) {
-            var json = JSON.parse(body);
-            if(json.status != 200){
+            var $ = cheerio.load(body);
 
-                return;
-            }
-            var $ = cheerio.load(json.html);
-            //比分
-            var hs = "0" , vs = "0";
-            var HostScoreBox = $(".team_vs_box .team_a h2").eq(0);
-            var VisitingScoreBox = $(".team_vs_box .team_b h2").eq(0);
-            if (HostScoreBox.length) {
-                hs = HostScoreBox.text();
-            }
-            if (VisitingScoreBox.length) {
-                vs = VisitingScoreBox.text();
-            }
-            if (/^\d+$/.test(hs) && /^\d+$/.test(vs)) {
-                updateScore(id, hs, vs);
-            }
+            var list = $(".table_list_c li");
+            list.each(function (i, li) {
+                var link = $(li).find("a").attr("href");
+                if (~link.indexOf(game.ThirdID)) {
+                    //命中同一场比赛
+                    var hs = "0" , vs = "0";
+                    var status;
+                    $(li).find(".name").each(function (j, name) {
+                        var score = $(name).parent().text().match(/(\d+)/)[0];
+                        if (j == 0) {
+                            hs = score
+                        } else {
+                            vs = score;
+                        }
+                    });
+                    updateScore(id, hs, vs);
 
-            //状态
-            var status;
-            var statusBox = $(".table_list .table_list_c li.on p").eq(0);
-            if (statusBox.length) {
-                var text = statusBox.text().trim();
-                if (text == "已结束") {
-                    status = 2;
+                    if ($(li).find("p").text() == "已结束") {
+                        status = 2;
+                    }
+                    if (status) {
+                        updateStatus(id, status, +hs > +vs ? game.HostID : game.VisitID, game);
+                    }
                 }
-            }
-            if (status) {
-                updateStatus(id, status, +hs > +vs ? game.HostID : game.VisitID, game);
-            }
-
+            });
         }
     });
 }
 
 
 function updateScore(id, hs, vs) {
+    log("update game " + id + " " + hs + "-" + vs);
     query("update playball.Game set ? where GameID=" + id, {
         HostScore: hs,
         VisitScore: vs
@@ -92,7 +87,7 @@ function updateScore(id, hs, vs) {
 }
 
 function updateStatus(id, status, winnerID, game) {
-    if(status!=2){
+    if (status != 2) {
         winnerID = 0;
     }
     query("update playball.Game set ? where GameID=" + id, {
