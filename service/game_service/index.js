@@ -65,6 +65,8 @@ exports.loadGames = function (options, cb) {
                                         });
                                     }
                                 }), cb);
+                            }else{
+                                cb(list);
                             }
                         } else {
                             cb();

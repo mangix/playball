@@ -1,10 +1,16 @@
 {
-    "/playball":{
-        "subs":{
-            "/nba":{
-                "action":"nba/index",
-                "result":{
-                    "success":"nba/index.jade"
+    "/playball": {
+        "subs": {
+            "/nba": {
+                "action": "nba/index",
+                "result": {
+                    "success": "nba/index.jade"
+                }
+            },
+            "/nba/ajax/schedule": {
+                "action": "nba/ajax/schedule",
+                "result": {
+                    "success": "nba/modules/schedule.jade"
                 }
             }
         }

@@ -1,3 +1,24 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ * @param triggers{$Elements} triggers jquery elements
+ * @param contents{$Elements} contents jquery elements
+ * */
+
+module.exports = function (triggers, contents) {
+    if (!triggers.length || !contents.length) {
+        return;
+    }
+    triggers.each(function (i, t) {
+        $(t).on("click", function () {
+            triggers.removeClass("on");
+            $(this).addClass("on");
+            contents.addClass("Hide");
+            contents.eq(i).removeClass("Hide");
+        });
+    });
+};
+
+},{}],2:[function(require,module,exports){
 /**
  * nba index
  * */
@@ -95,3 +116,5 @@ var Tab = require("../modules/tab");
     };
 
 })();
+
+},{"../modules/tab":1}]},{},[2]);

@@ -4,11 +4,13 @@ var async = require("async");
 var RoundEntity = require("../../../service/game_service/entity/round");
 var _ = require("underscore");
 var moment = require('moment');
-var dateUtil = require("../../../util/date_util");
+var schedule = require("./modules/schedules");
 
 
 exports.execute = function (req, res) {
-    async.parallel([loadPlayOff, loadLiveList], function (err, results) {
+    async.parallel([loadPlayOff, function (cb) {
+        schedule(0, cb);
+    }], function (err, results) {
         res.result('success', {
             playOff: results[0],
             lives: results[1]
@@ -52,7 +54,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.HostRank,
                 TeamWin: round.HostWin,
                 Type: 'team',
-                logo:teamService.logo(round.HostName)
+                logo: teamService.logo(round.HostName)
             };
             var visit = {
                 TeamID: round.VisitID,
@@ -60,7 +62,7 @@ var loadPlayOff = function (cb) {
                 TeamRank: round.VisitRank,
                 TeamWin: round.VisitWin,
                 Type: 'team',
-                logo:teamService.logo(round.VisitName)
+                logo: teamService.logo(round.VisitName)
             };
 
             var thisArray = data[area][round.Round - 1];
@@ -183,38 +185,4 @@ var loadLiveData = function (area, cb) {
         });
     });
     async.parallel(tasks, cb);
-};
-
-//直播列表
-var loadLiveList = function (cb) {
-    var d = dateUtil.duration(7);
-    gameService.loadGames({
-        type: 1,
-        fromDate: d.begin,
-        endDate: d.end,
-        live: true,
-        replay: true,
-        byDate: true,
-        shortName: true
-    }, function (err, games) {
-        games = games || {};
-
-        //转成数组， 保证顺序
-        var list = Object.keys(games).map(function (date) {
-            games[date].forEach(function (game) {
-                game.time = moment(game.Time).format("hh:mm");
-                game.hostLogo = teamService.logo(game.HostName);
-                game.visitLogo = teamService.logo(game.VisitName);
-            });
-            return {
-                date: moment(new Date(+date)).format('MM-DD'),
-                week: dateUtil.week(date,true),
-                list: games[date]
-            };
-        }).sort(function (o1, o2) {
-            return o1.date - o2.date;
-        });
-
-        cb(null, list);
-    });
 };

@@ -1,8 +1,15 @@
 /**
- * 返回当天0点到 duration 天数的23：59：59
+ * 返回startDate 当天0点到 duration 天数的23：59：59
+ * 1为当天0点到当天23：59：59
+ * 依次类推
+ *
+ * @param duration {Number} 天数
+ * @param startDate {Date} 开始日期， 默认为今天
  * */
-exports.duration = function (duration) {
-    var morning = new Date();
+exports.duration = function (duration, startDate) {
+    startDate = startDate || new Date();
+
+    var morning = startDate;
     morning.setHours(0);
     morning.setMinutes(0);
     morning.setSeconds(0);

@@ -6,7 +6,8 @@
 li {
     list-style: none;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
@@ -14,7 +15,7 @@ body {
     font: 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', simsun;
 }
 
-.Hide{
+.Hide {
     display: none !important;
 }
 
@@ -27,6 +28,10 @@ body {
     content: '\20';
     height: 0;
     clear: both
+}
+
+.Loading {
+    background: url(./img/loading.gif) no-repeat center center;
 }
 
 @-webkit-keyframes shake {
@@ -64,15 +69,15 @@ body {
         -webkit-transform: translate(1px, -2px) rotate(-1deg)
     }
 }
-@-webkit-keyframes blink{
+
+@-webkit-keyframes blink {
     50% {
-        -webkit-transform:scale(0.8)
+        -webkit-transform: scale(0.8)
     }
-    100%{
-        -webkit-transform:scale(1)
+    100% {
+        -webkit-transform: scale(1)
     }
 }
-
 
 .Title {
     font-weight: bold;
@@ -93,8 +98,6 @@ body {
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6ab7cf), to(#deeff4));
 }
 
-
-
 .nav .logo {
     width: 220px;
     height: 100px;
@@ -112,7 +115,7 @@ body {
 
 .container {
     margin: 0 auto;
-    padding:0 0 100px ;
+    padding: 0 0 100px;
 }
 
 .playoff {
@@ -183,8 +186,7 @@ body {
 
 }
 
-
-.playoff .box.live .on{
+.playoff .box.live .on {
     background: url(./img/video_live.png) no-repeat 0 0;
     width: 32px;
     height: 32px;
@@ -416,35 +418,65 @@ body {
 
 /*球队logo*/
 
-.team_logo{
+.team_logo {
     width: 45px;
     height: 42px;
     position: absolute;
-    top:50%;
-    margin-top:-21px;
+    top: 50%;
+    margin-top: -21px;
 }
-
-
 
 /**直播列表*/
 .lives {
+    position: relative;
     /*padding: 15px 0 ;*/
     /*border: solid 1px #eaeaea;*/
 }
-.lives .dates_holder{
-    background-color: #cccccc;
+
+.lives .live_page {
+    min-height: 400px;
 }
+
+.lives .pre,.lives .next{
+    position: absolute;
+    width:64px;
+    height: 64px;
+    top:0;
+    cursor: pointer;
+}
+.lives .pre{
+    background: url(./img/arrow-pre.png) no-repeat 0 0;
+    left: 0;
+}
+.lives .next{
+    background: url(./img/arrow-next.png) no-repeat 0 0;
+    right: 0;
+}
+
+.lives .dates_holder {
+    text-align: center;
+}
+
 .lives .date {
     color: #ffffff;
-
+    background: #cccccc;
     font-size: 16px;
     text-align: center;
     line-height: 20px;
-    padding: 10px 48px;
+    padding: 10px 0;
     display: inline-block;
+    width:124px;
 }
-.lives .date.on , .lives .date:hover{
+
+.lives .date.on, .lives .date:hover {
     background-color: #08c;
+}
+
+.lives .none{
+    text-align: center;
+    font-size: 30px;
+    padding-top:200px
+
 }
 
 .lives .games {
@@ -453,39 +485,39 @@ body {
 
 .lives .games li {
     float: left;
-    width:480px;
+    width: 480px;
     border: solid 1px #cccccc;
     margin: 10px 60px 10px 0;
-    box-shadow: #cccccc 0 0  2px 0;
+    box-shadow: #cccccc 0 0 2px 0;
 }
 
-.lives .games li.rightest{
+.lives .games li.rightest {
     margin-right: 0;
 }
 
-.lives .games li .title{
+.lives .games li .title {
     line-height: 40px;
     border-bottom: solid 1px #cccccc;
     padding-left: 60px;
     position: relative;
 }
 
-.lives .games li .clock{
-    width:24px;
+.lives .games li .clock {
+    width: 24px;
     height: 24px;
     background: url(./img/clock.png) no-repeat 0 0;
     position: absolute;
     left: 20px;
-    top:50%;
+    top: 50%;
     margin-top: -12px;
 }
 
-.lives .games li .main{
+.lives .games li .main {
     position: relative;
 }
 
-.lives .games li .team{
-    padding: 15px 160px 15px 75px ;
+.lives .games li .team {
+    padding: 15px 160px 15px 75px;
     height: 40px;
     line-height: 40px;
     position: relative;
@@ -493,39 +525,41 @@ body {
     border-bottom: solid 1px #cccccc;
     font-size: 20px;
 }
-.lives .games li .score{
+
+.lives .games li .score {
     float: right;
 }
-.lives .games li .team .team_logo{
+
+.lives .games li .team .team_logo {
     left: 20px;
 }
-.lives .games li .status{
+
+.lives .games li .status {
     position: absolute;
     right: 0;
-    top:0;
+    top: 0;
     background: #ffffff;
     height: 140px;
     line-height: 140px;
     width: 140px;
     text-align: center;
-    border-left:solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
 }
 
-.lives .games .live{
+.lives .games .live {
     padding: 10px 20px;
     line-height: 1.5;
 }
 
-
-
 .lives .games li .link {
     color: #08c;
-    font-size:14px;
+    font-size: 14px;
     float: left;
     margin-right: 10px;
     line-height: 25px;
-    min-width:130px;
+    min-width: 130px;
 }
-.lives .games li .link:hover{
+
+.lives .games li .link:hover {
     text-decoration: underline;
 }
