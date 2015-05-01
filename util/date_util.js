@@ -65,7 +65,7 @@ exports.week = function (date, commonDesc) {
             return "今天";
         }
         var yesterdayMorning = today.begin.setDate(today.begin.getDate() - 1);
-        var yesterdayEnd = today.end.setDate(today.begin.getDate() - 1);
+        var yesterdayEnd = today.end.setDate(today.end.getDate() - 1);
 
         if (+date >= yesterdayMorning && +date < yesterdayEnd) {
             return "昨天";
@@ -80,4 +80,6 @@ exports.week = function (date, commonDesc) {
     }
     return week;
 };
+
+exports.week(new Date(2015,4,2,23),true);
 
