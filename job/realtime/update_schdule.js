@@ -86,6 +86,8 @@ function updateScore(id, hs, vs) {
     });
 }
 
+var playOffUpdated = {};
+
 function updateStatus(id, status, winnerID, game) {
     if (status != 2) {
         winnerID = 0;
@@ -94,15 +96,19 @@ function updateStatus(id, status, winnerID, game) {
         Status: status,
         WinnerID: winnerID || 0
     }, function (err) {
+        if (playOffUpdated[id]) {
+            return;
+        }
         if (err) {
             log(err);
         } else {
             if (status == 2 && game && game.IsPlayOff == 1 && game.RoundID) {
+                playOffUpdated[id] = true;
                 query('select * from playball.PlayOff where RoundID = ?', [game.RoundID], function (err, round) {
                     if (!err && round && round.length) {
                         round = round[0];
                         var key = winnerID == round.HostID ? 'HostWin' : 'VisitWin';
-                        query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ? and '+key+' < 4', [game.RoundID], function (e) {
+                        query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ? and ' + key + ' < 4', [game.RoundID], function (e) {
                             if (e) {
                                 log(e);
                             }
