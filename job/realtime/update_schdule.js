@@ -102,7 +102,7 @@ function updateStatus(id, status, winnerID, game) {
                     if (!err && round && round.length) {
                         round = round[0];
                         var key = winnerID == round.HostID ? 'HostWin' : 'VisitWin';
-                        query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ?', [game.RoundID], function (e) {
+                        query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ? and '+key+' < 4', [game.RoundID], function (e) {
                             if (e) {
                                 log(e);
                             }
