@@ -1,6 +1,6 @@
 var request = require("request");
 var cheerio = require('cheerio');
-
+var logger = require("winston").loggers.get("job");
 
 module.exports = function (url, cb) {
     request({
@@ -10,7 +10,7 @@ module.exports = function (url, cb) {
         }
     }, function (err, response, body) {
         if (err || response.statusCode != 200) {
-            console.log("request:" + url + " error, " + (err || ("code:" + response.statusCode)));
+            logger.error("request " + url + " error", (err || ("code:" + response.statusCode)));
             cb(cheerio.load('<div></div>'));
         } else {
             cb(cheerio.load(body));

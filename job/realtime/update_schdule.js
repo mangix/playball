@@ -6,9 +6,10 @@ var query = require("../../service/common/connection").query;
 var request = require("request");
 var cheerio = require("cheerio");
 
-var log;
+var logger;
 module.exports = function (runner) {
-    log = runner && runner.log || console.log;
+    logger = runner || console;
+
     var today = new Date();
     today.setHours(0);
     today.setMinutes(0);
@@ -38,7 +39,7 @@ module.exports = function (runner) {
 
 
 function findScore(liveUrl, id, game) {
-    log("request hupu game page " + liveUrl + " to get score.. ");
+    logger.info("request hupu game page " + liveUrl + " to get score.. ");
 
     request(liveUrl, function (errors, response, body) {
         if (!errors && response && response.statusCode == 200) {
@@ -75,13 +76,13 @@ function findScore(liveUrl, id, game) {
 
 
 function updateScore(id, hs, vs) {
-    log("update game " + id + " " + hs + "-" + vs);
+    logger.info("update game " + id + " " + hs + "-" + vs);
     query("update playball.Game set ? where GameID=" + id, {
         HostScore: hs,
         VisitScore: vs
     }, function (err) {
         if (err) {
-            log(err);
+            log.error(err);
         }
     });
 }
@@ -100,7 +101,7 @@ function updateStatus(id, status, winnerID, game) {
             return;
         }
         if (err) {
-            log(err);
+            logger.error(err);
         } else {
             if (status == 2 && game && game.IsPlayOff == 1 && game.RoundID) {
                 playOffUpdated[id] = true;
@@ -110,7 +111,7 @@ function updateStatus(id, status, winnerID, game) {
                         var key = winnerID == round.HostID ? 'HostWin' : 'VisitWin';
                         query('update playball.PlayOff set ' + key + '= ' + key + '+1 where RoundID= ? and ' + key + ' < 4', [game.RoundID], function (e) {
                             if (e) {
-                                log(e);
+                                logger.error(e);
                             }
                         });
                     }

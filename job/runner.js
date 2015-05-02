@@ -4,7 +4,11 @@
  * setSchedule --> addJob --> run
  * */
 
-var moment = require("moment");
+var winston = require("winston");
+require("../log");
+
+var logger = winston.loggers.get("job");
+
 var id = 0;
 
 module.exports = function (jobName) {
@@ -35,7 +39,7 @@ module.exports = function (jobName) {
      * */
     var setLag = runner.setLag = function (l) {
         lag = l;
-        this.log('set lag in ' + l);
+        this.info('set lag in ' + l);
     };
 
     /**
@@ -50,9 +54,9 @@ module.exports = function (jobName) {
      * */
     var runJobs = function () {
         jobs.forEach(function (job) {
-            job.call(runner,runner);
+            job.call(runner, runner);
         });
-        runner.log('run ' + jobs.length + ' jobs');
+        runner.info('run ' + jobs.length + ' jobs');
     };
 
     /**
@@ -62,7 +66,7 @@ module.exports = function (jobName) {
     var isRunning = false;
     var run = runner.run = function () {
 
-        runner.log("start runner " + jobName + "..");
+        runner.info("start runner " + jobName + "..");
 
         if (isRunning) {
             return;
@@ -84,11 +88,13 @@ module.exports = function (jobName) {
         isStart = true;
     };
 
-    runner.log = function () {
-        var args = Array.prototype.slice.call(arguments, 0);
-        args.unshift("[" + moment(new Date()).format("YY-MM-DD hh:mm:ss") + " " + jobName + "] ");
-        console.log.apply(console, args);
-    };
+    ["info", "warn", "error"].forEach(function (method) {
+        runner[method] = function () {
+            var args = Array.prototype.slice.call(arguments, 0);
+            args[0] = "[" + jobName + "] " + args[0];
+            logger[method].apply(logger, args);
+        }
+    });
 
     return runner;
 

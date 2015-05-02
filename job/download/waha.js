@@ -12,9 +12,11 @@ var URL = 'http://www.52waha.com';
 var url = require("url");
 var async = require('async');
 
-var log = console.log;
+var logger = console;
+
 module.exports = function (runner) {
-    log = runner && runner.log || console.log;
+    logger = runner || console;
+
     GameService.loadGames({
         type: 1,
         fromDate: date.duration(1).begin,
@@ -25,8 +27,6 @@ module.exports = function (runner) {
             findDownload(games);
 
             findReplay(games);
-
-
         }
     });
 };
@@ -48,8 +48,7 @@ var findDownload = function (games) {
             list.each(function (i, titleEl) {
                 var link = titleMatch($(titleEl), game);
                 if (link) {
-                    log("match:", game.HostName, game.VisitName, link);
-
+                    logger.info("match:", game.HostName, game.VisitName, link);
 
                     ReplayService.addReplay({
                         GameID: game.GameID,
@@ -71,7 +70,7 @@ var findReplay = function (games) {
             list.each(function (i, titleEl) {
                 var link = titleMatch($(titleEl), game);
                 if (link) {
-                    log("video:", game.HostName, game.VisitName, link);
+                    logger.info("video:", game.HostName, game.VisitName, link);
 
                     //继续爬详情页
                     CopyCat(url.resolve(URL, link), function ($) {
@@ -80,15 +79,15 @@ var findReplay = function (games) {
                         var cntv = $("#videopartlist .cntv");
 
                         if (qq.length) {
-                            saveVideos($,qq.parents("dl").find(".pc_link"), game,"QQ");
+                            saveVideos($, qq.parents("dl").find(".pc_link"), game, "QQ");
                         }
 
-                        if(sina.length){
-                            saveVideos($,sina.parents('dl').find(".pc_link"),game,"新浪");
+                        if (sina.length) {
+                            saveVideos($, sina.parents('dl').find(".pc_link"), game, "新浪");
                         }
 
-                        if(cntv.length){
-                            saveVideos($,cntv.parents('dl').find(".pc_link"),game,"cntv");
+                        if (cntv.length) {
+                            saveVideos($, cntv.parents('dl').find(".pc_link"), game, "cntv");
                         }
                     });
                 }
@@ -97,25 +96,25 @@ var findReplay = function (games) {
     });
 };
 
-var saveVideos = function($,links,game,source){
+var saveVideos = function ($, links, game, source) {
     if (links.length) {
         var tasks = [];
         links.each(function (i, link) {
             tasks.push(function (cb) {
                 var textMatch = $(link).parent().text().match(/\[([^\[\]]+)\]/);
                 var text = "在线录像";
-                if(textMatch){
+                if (textMatch) {
                     text = textMatch[1].trim();
                 }
 
                 CopyCat(url.resolve(URL, $(link).attr("href")), function ($) {
                     var qqUrl = $('#objVideo param[name="movie"]');
                     if (qqUrl.length) {
-                        cb(null , {
+                        cb(null, {
                             GameID: game.GameID,
                             Type: 1,
                             Link: qqUrl.attr("value"),
-                            Title: "["+source+"]" + text
+                            Title: "[" + source + "]" + text
                         });
                     } else {
                         cb();
@@ -125,12 +124,14 @@ var saveVideos = function($,links,game,source){
         });
         async.parallel(tasks, function (err, results) {
             if (err) {
+                logger.error("save replays error", err);
                 return;
             }
             async.series(results.map(function (data) {
                 return function (cb) {
                     if (data) {
                         ReplayService.addReplay(data, function () {
+                            logger.info("save replay success", data);
                             cb();
                         })
                     } else {

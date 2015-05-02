@@ -5,6 +5,8 @@ var gameService = require("../../service/game_service/index");
 var liveService = require("../../service/live_service/index");
 
 var URL = 'http://www.zhibo8.cc';
+var DateUtil = require("../../util/date_util");
+var CopyCat = require("../copycat");
 
 
 var teamsShortName = {
@@ -39,32 +41,21 @@ var teamsShortName = {
     '印第安纳步行者': '步行者',
     '底特律活塞': '活塞'
 };
-var log;
+var logger = console;
 
 var findLive = module.exports = function (runner) {
-    log = runner && runner.log || console.log;
-    var today = new Date();
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0);
+    logger = runner || console;
 
-    var endDate = new Date(today);
-    endDate.setDate(endDate.getDate() + 7);
+    var d = DateUtil.duration(7);
 
     gameService.loadGames({
         type: 1,
-        fromDate: today,
-        endDate: endDate
+        fromDate: d.begin,
+        endDate: d.end
     }, function (err, games) {
-        request(URL + '/index.html', function (err, res, body) {
-            if (err || res.statusCode != 200) {
-                return;
-            }
-
+        CopyCat(URL + '/index.html', function ($) {
             games.forEach(function (game) {
-                matchGame(game, body);
-
+                matchGame(game, $);
             });
         });
 
@@ -73,14 +64,13 @@ var findLive = module.exports = function (runner) {
 
 findLive();
 
-var matchGame = function (game, body) {
+var matchGame = function (game, $) {
     var time = new Date(Date.parse(game.Time));
     var month = time.getMonth() + 1;
     var date = time.getDate();
     var h = teamsShortName[game.HostName];
     var v = teamsShortName[game.VisitName];
 
-    var $ = cheerio.load(body);
     var dateBox = $("#left .box");
 
     dateBox.each(function (i, box) {
@@ -141,6 +131,6 @@ var addLive = function (game, name, link) {
         Link: link,
         Type: ~name.indexOf('文字') ? 2 : (~name.indexOf('比分') ? 3 : 1)
     }, function () {
-        log('add :' + game.GameID + " " + game.HostName + "-" + game.VisitName + " " + name + " " + link);
+        logger.info('add live:', game);
     });
 };
