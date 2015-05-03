@@ -31,17 +31,14 @@ var Tab = require("../modules/tab");
         0: pageHolder.find(".J_page")
     };
 
-    var disablePre = false,
-        disableNext = false;
-
 
     pageHolder.find(".J_operate").each(function (i, op) {
         $(op).on("click", function (e) {
             e.preventDefault();
-            if (i == 0 && !disablePre) {
+            if (i == 0 ) {
                 //pre
                 loadPage(--page, true);
-            } else if (i == 1 && !disableNext) {
+            } else if (i == 1 ) {
                 //next
                 loadPage(++page);
             }
@@ -70,15 +67,6 @@ var Tab = require("../modules/tab");
                 pages[index] = newPage;
 
                 Tab(newPage.find(".J_tab_t a"), newPage.find(".J_tab_c ul.games"));
-
-                if(newPage.find(".none").length){
-                    //没有了
-                    if(pre){
-                        disablePre = true;
-                    }else{
-                        disableNext = true;
-                    }
-                }
             },
             error: function () {
 
