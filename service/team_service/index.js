@@ -10,7 +10,7 @@ exports.short = function (teamName) {
     var team = teams.filter(function (t) {
         return t.Name == teamName
     });
-    return (team[0] && team[0].ShortName )|| '';
+    return (team[0] && team[0].ShortName ) || '';
 };
 
 exports.logo = function (teamShortName) {
@@ -19,9 +19,19 @@ exports.logo = function (teamShortName) {
     var team = teams.filter(function (t) {
         return t.ShortName == teamShortName;
     });
-    if(team.length){
-        return "/playball/static/images/logo/"+ team[0].Logo;
-    }else{
+    if (team.length) {
+        return "/playball/static/images/logo/" + team[0].Logo;
+    } else {
         return "";
     }
+};
+
+exports.id = function (teamName) {
+    var team = teams.filter(function (t) {
+        return t.ShortName == teamName || t.Name == teamName;
+    });
+    if (team.length) {
+        return team[0].TeamID;
+    }
+    return 0;
 };

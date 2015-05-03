@@ -24,7 +24,9 @@ block content
                                         else
                                             | #{team.live.parsedScore}
                                     else if team.next
-                                        | NEXT:#{team.next.displayTime}
+                                        | NEXT
+                                        br
+                                        | #{team.next.displayTime}
                                 .self-line
                                 if index%2==0 && j<3
                                     .hor
