@@ -7,6 +7,12 @@
                     "success": "nba/index.jade"
                 }
             },
+            "/nba/game/:id": {
+                "action": "nba/detail",
+                "result": {
+                    "success": "nba/detail.jade"
+                }
+            },
             "/nba/ajax/schedule": {
                 "action": "nba/ajax/schedule",
                 "result": {
