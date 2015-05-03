@@ -81,5 +81,9 @@ exports.week = function (date, commonDesc) {
     return week;
 };
 
-exports.week(new Date(2015,4,2,23),true);
+exports.isToday = function (date) {
+    var d = exports.duration(1);
+
+    return date >= +d.begin && date < d.end;
+};
 

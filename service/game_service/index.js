@@ -146,9 +146,5 @@ exports.loadGamesByRoundID = function (roundId, cb) {
  * 判断一个game是不是今天的
  * */
 exports.isToday = function (game) {
-    var time = game.Time;
-
-    var d = date.duration(1);
-
-    return time >= +d.begin && time < d.end;
+    return date.isToday(game.Time);
 };

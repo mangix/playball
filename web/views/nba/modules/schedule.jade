@@ -3,38 +3,42 @@
         .none 暂无赛程
     .dates_holder.J_tab_t
         each day,i in lives
-            a.date(href="javascript:void(0);",class=i==0?"on":"")
+            a.date(href="javascript:void(0);",class=day.current?"on":"")
                 | #{day.week}
                 br
                 | #{day.date}
     .games_holder.J_tab_c
         each day,i in lives
-            ul.games.Fix(class=i==0?"":"Hide")
-                each game,j in day.list
-                    li(id="live_#{game.GameID}",class=j%2==1?"rightest":"")
-                        .title
-                            .clock
-                            | #{game.time}
-                        .main
-                            .team
-                                img.team_logo(src="#{game.hostLogo}")
-                                | #{game.hostShortName}
-                                if game.Status !=0
-                                    span.score #{game.HostScore}
-                            .team
-                                img.team_logo(src="#{game.visitLogo}")
-                                | #{game.visitShortName}
-                                if game.Status !=0
-                                    span.score #{game.VisitScore}
-                            .status
-                                | #{game.Status==0?"未开始":(game.Status==1?"进行中":"已结束")}
+            if !day.list || !day.list.length
+                .J_games.none 本日暂无比赛
+            else
+                ul.J_games.games.Fix(class=day.current?"":"Hide")
+                    each game,j in day.list
 
-                            if game.Status != 2 && game.lives && game.lives.length
-                                .live.Fix
-                                    each live in game.lives
-                                        a.link(href="#{live.Link}",target='_blank') #{live.Name}
+                        li(id="live_#{game.GameID}",class=j%2==1?"rightest":"")
+                            .title
+                                .clock
+                                | #{game.time}
+                            .main
+                                .team
+                                    img.team_logo(src="#{game.hostLogo}")
+                                    | #{game.hostShortName}
+                                    if game.Status !=0
+                                        span.score #{game.HostScore}
+                                .team
+                                    img.team_logo(src="#{game.visitLogo}")
+                                    | #{game.visitShortName}
+                                    if game.Status !=0
+                                        span.score #{game.VisitScore}
+                                .status
+                                    | #{game.Status==0?"未开始":(game.Status==1?"进行中":"已结束")}
 
-                            if game.Status==2 && game.replays && game.replays.length
-                                .live.Fix
-                                    each replay in game.replays
-                                        a.link(href="#{replay.Link}",target='_blank') #{replay.Title}
+                                if game.Status != 2 && game.lives && game.lives.length
+                                    .live.Fix
+                                        each live in game.lives
+                                            a.link(href="#{live.Link}",target='_blank') #{live.Name}
+
+                                if game.Status==2 && game.replays && game.replays.length
+                                    .live.Fix
+                                        each replay in game.replays
+                                            a.link(href="#{replay.Link}",target='_blank') #{replay.Title}

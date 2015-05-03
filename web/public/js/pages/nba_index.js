@@ -11,7 +11,7 @@ var Tab = require("../modules/tab");
  * */
 (function () {
     //init default tab
-    Tab($(".J_tab_t a"), $(".J_tab_c ul.games"));
+    Tab($(".J_tab_t a"), $(".J_tab_c .J_games"));
 
 })();
 
@@ -66,7 +66,7 @@ var Tab = require("../modules/tab");
                 pages[index].remove();
                 pages[index] = newPage;
 
-                Tab(newPage.find(".J_tab_t a"), newPage.find(".J_tab_c ul.games"));
+                Tab(newPage.find(".J_tab_t a"), newPage.find(".J_tab_c .J_games"));
             },
             error: function () {
 
