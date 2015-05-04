@@ -10,7 +10,7 @@
     .games_holder.J_tab_c
         each day,i in lives
             if !day.list || !day.list.length
-                .J_games.none 本日暂无比赛
+                .J_games.none(class=day.current?"":"Hide") 本日暂无比赛
             else
                 ul.J_games.games.Fix(class=day.current?"":"Hide")
                     each game,j in day.list
