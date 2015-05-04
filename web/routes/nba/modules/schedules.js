@@ -6,7 +6,7 @@
  * PageSize = 7;
  * Page 从0 开始
  *
- * Page＝0，从本周开始
+ * Page＝0，从本周1开始
  * */
 
 var DateUtil = require("../../../../util/date_util");
@@ -18,11 +18,11 @@ var PAGE_SIZE = 7;
 
 module.exports = function (page, cb) {
     page = page || 0;
-    /**
-     * 计算起始日期
-     * */
 
-    var startDate = moment().weekday(-6).toDate();
+
+    var startDate = DateUtil.duration(1).begin;
+
+    startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
     startDate.setDate(startDate.getDate() + page * PAGE_SIZE);
 
     var d = DateUtil.duration(PAGE_SIZE, startDate);
