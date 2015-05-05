@@ -19,8 +19,11 @@
                     "success": "nba/modules/schedule.jade"
                 }
             },
-            "/nbalive/schedule": {
+            "/nbalive/schedule/fetch": {
                 "action": "nbalive/schedule"
+            },
+            "/nbalive/statistic/fetch": {
+                "action": "nbalive/statistic"
             }
         }
     }

@@ -18,5 +18,5 @@ exports.insertOrUpdate = function (gameId, statistic, cb) {
 
 
 exports.loadStatisticByGameID = function (gameId, cb) {
-    query('select ?? from Game where GameID=?', [columns  , gameId], cb);
+    query('select ?? from Statistic where GameID=?', [columns  , gameId], cb);
 };
