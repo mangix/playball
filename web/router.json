@@ -18,6 +18,9 @@
                 "result": {
                     "success": "nba/modules/schedule.jade"
                 }
+            },
+            "/nbalive/schedule": {
+                "action": "nbalive/schedule"
             }
         }
     }
