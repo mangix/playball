@@ -1,5 +1,4 @@
 var request = require('request'),
-    cheerio = require('cheerio'),
     url = 'http://g.hupu.com/nba/daily/boxscore_';
 
 var query = require("../../service/common/connection").query;
