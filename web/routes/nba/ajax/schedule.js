@@ -4,17 +4,15 @@
  * url 参数
  * page
  * */
-var schedule = require("../modules/schedules");
+var schedule = require("../bricks/schedules");
+var Lego = require("node-lego");
 
 exports.execute = function (req, res) {
 
-    var page = req.query.page || 0;
 
-
-    schedule(page, function (err, list) {
-
-        res.result("success", {
-            lives: list
-        });
+    new Lego().start({
+        page: req.query.page || 0
+    }).pipe(schedule).done(function(data){
+        res.result("success", data);
     });
 };

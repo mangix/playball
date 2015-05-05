@@ -10,14 +10,15 @@
  * */
 
 var DateUtil = require("../../../../util/date_util");
-var GameService = require("../../../../service/game_service");
-var TeamService = require("../../../../service/team_service");
+var GameService = require("../../../../service/game_service/index");
+var TeamService = require("../../../../service/team_service/index");
 var moment = require("moment");
+var Brick = require("node-lego").Brick;
 
 var PAGE_SIZE = 7;
 
-module.exports = function (page, cb) {
-    page = page || 0;
+module.exports = Brick.create("Schedule", function (params, cb) {
+    var page = params.page || 0;
 
 
     var startDate = DateUtil.duration(1).begin;
@@ -64,7 +65,7 @@ module.exports = function (page, cb) {
             };
         });
 
-        cb(null, list);
+        cb(Brick.SUCCESS, list);
     });
 
-};
+});

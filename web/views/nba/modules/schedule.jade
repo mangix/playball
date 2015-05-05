@@ -1,14 +1,14 @@
 .live_page.J_page
-    if !lives || !lives.length
+    if !Schedule || !Schedule.length
         .none 暂无赛程
     .dates_holder.J_tab_t
-        each day,i in lives
+        each day,i in Schedule
             a.date(href="javascript:void(0);",class=day.current?"on":"")
                 | #{day.week}
                 br
                 | #{day.date}
     .games_holder.J_tab_c
-        each day,i in lives
+        each day,i in Schedule
             if !day.list || !day.list.length
                 .J_games.none(class=day.current?"":"Hide") 本日暂无比赛
             else

@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     .playoff.Fix.inner
-        - var list = [playOff.west , playOff.east];
+        - var list = [PlayOffs.west , PlayOffs.east];
 
         each area,i in list
             .area(class=i==0?'west':'east')
@@ -32,7 +32,7 @@ block content
                                     .hor
                                     .ver
 
-        if !playOff.champion
+        if !PlayOffs.champion
             .champion
                 img(src='/playball/static/stylesheets/img/obrein.jpg')
 
