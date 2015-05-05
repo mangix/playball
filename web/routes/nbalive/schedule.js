@@ -47,8 +47,8 @@ var parseData = function (results) {
         return {
             time: moment(row.Time).format("hh:mm"),
             score: row.HostScore + "-" + row.VisitScore,
-            host: row.HostName,
-            visiting: row.VisitName,
+            host: row.hostShortName,
+            visiting: row.visitShortName,
             status: row.Status,
             gameId: row.ThirdID,
             id: row.GameID,
