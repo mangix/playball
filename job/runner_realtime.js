@@ -75,8 +75,8 @@ Runner.setSchedule(function (finish) {
 
 
 //add更新统计数据job
-//Runner.addJob(require("./realtime/update_statistic"));
 
 Runner.addJob(require("./realtime/update_schdule"));
+Runner.addJob(require("./realtime/update_statistic"));
 
 Runner.run();

@@ -60,3 +60,12 @@ Create Table playball.Replay(
   index IX_GameID_Type(`GameID`,`Type`),
   UNIQUE  KEY UK_GameID_Link(`GameID`,`Link`)
 )engine=innodb default charset=utf8 comment '录像表';
+
+Create Table playball.Statistic(
+  `ID` int  AUTO_INCREMENT NOT NULL Comment 'ID',
+  `GameID` int NOT NULL COMMENT 'GameID',
+  `Statistic` text NULL COMMENT '统计json',
+  `UpdateTime` timestamp NOT NULL default NOW() COMMENT '更新时间',
+  Primary KEY (`ID`),
+  UNIQUE  KEY UK_GameID(`GameID`)
+)engine=innodb default charset=utf8 comment '技术统计表';
