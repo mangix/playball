@@ -2,7 +2,7 @@ var winston = require("winston");
 var moment = require("moment");
 
 var timestamp = function () {
-    return "[" + moment().format("YYYY-MM-DD hh:mm:ss:SSS") + "]"
+    return "[" + moment().format("YYYY-MM-DD HH:mm:ss:SSS") + "]"
 };
 
 winston.loggers.add("app", {
