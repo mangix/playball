@@ -1,0 +1,420 @@
+.Hide {
+  display: none !important;
+}
+.hide {
+  display: none ;
+}
+.Loading {
+  background: url(img/loading.gif) no-repeat center center;
+}
+.Fix:after {
+  display: block;
+  content: '';
+  height: 0;
+  clear: both;
+}
+.Left {
+  float: left !important;
+}
+.Right {
+  float: right !important;
+}
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+body {
+  font: 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', simsun;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  outline: none;
+}
+textarea,
+input {
+  resize: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(0, 2px) rotate(0);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 1px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, -2px) rotate(0);
+  }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -2px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(2px, -1px) rotate(0);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    -webkit-transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+.nav {
+  height: 120px;
+  /*box-shadow: #eee 0 1px 2px 1px;*/
+  /*position: fixed;*/
+  width: 100%;
+  /*background: #ffffff;*/
+  /*z-index: 10000000;*/
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6ab7cf), to(#deeff4));
+}
+.nav .logo {
+  width: 220px;
+  height: 100px;
+  display: block;
+  background: url(img/logo2.png) no-repeat 20px center;
+  -webkit-animation: shake 1s infinite linear;
+}
+.inner {
+  width: 1024px;
+  margin: 0 auto;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 0 100px;
+}
+.Title {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 50px;
+  color: #ff8400;
+  border-bottom: solid 1px #eaeaea;
+  margin-bottom: 15px;
+}
+.team_logo {
+  width: 45px;
+  height: 42px;
+  position: absolute;
+  top: 50%;
+  margin-top: -21px;
+}
+.playoff {
+  padding: 30px 0;
+  position: relative;
+  background: url(img/playoffbg.png) center center no-repeat;
+}
+.playoff .area {
+  width: 512px;
+}
+.playoff .box {
+  /*width:85px;*/
+  /*border: solid 1px #ccc;*/
+  height: 38px;
+  line-height: 38px;
+  position: relative;
+  text-align: left;
+  padding-left: 40px;
+  font-size: 16px;
+}
+.playoff .box.null,
+.playoff .box.live {
+  padding: 0 20px !important;
+  text-align: center;
+}
+.playoff .box.last {
+  margin-bottom: 0 !important;
+}
+.playoff .box.live .on {
+  background: url(img/video_live.png) no-repeat 0 0;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  -webkit-animation: blink 1s infinite linear;
+}
+.playoff .box .self-line,
+.playoff .box .hor {
+  position: absolute;
+  width: 10px;
+  border-top: solid 1px #ba0d0d;
+}
+.playoff .box .ver {
+  position: absolute;
+  top: 20px;
+  border-left: solid 1px #ba0d0d;
+}
+.playoff .box .self-line {
+  top: 50%;
+}
+.playoff .box .hor {
+  top: 60px;
+}
+.playoff .box .team {
+  white-space: nowrap;
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+}
+.playoff .box .score {
+  display: inline-block;
+  background: #ba0d0d;
+  padding: 0 8px;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.playoff .west {
+  float: left;
+}
+.playoff .west .round {
+  float: left;
+}
+.playoff .west .box .team_logo {
+  left: -5px;
+}
+.playoff .west .box .score {
+  float: left;
+}
+.playoff .west .box .ver {
+  right: -10px;
+}
+.playoff .west .box .self-line {
+  left: 100%;
+}
+.playoff .west .box .hor {
+  right: -20px;
+}
+.playoff .east {
+  float: right;
+}
+.playoff .east .round {
+  float: right;
+  margin-right: 0;
+  margin-left: 20px;
+}
+.playoff .east .box {
+  padding-left: 0;
+  padding-right: 40px;
+}
+.playoff .east .box .team_logo {
+  right: -5px;
+}
+.playoff .east .box .ver {
+  left: -10px;
+}
+.playoff .east .box .self-line {
+  right: 100%;
+}
+.playoff .east .box .hor {
+  left: -20px;
+}
+.playoff .round {
+  margin-right: 20px;
+}
+.playoff .round1 .box {
+  margin-bottom: 40px;
+  /**减小round1 球队间距*/
+}
+.playoff .round1 .box.even {
+  position: relative;
+  top: 10px;
+}
+.playoff .round1 .box.even .hor {
+  top: 50px;
+}
+.playoff .round1 .box.even .ver {
+  height: 58px;
+}
+.playoff .round1 .box.odd {
+  position: relative;
+  top: -10px;
+}
+.playoff .round2 {
+  padding-top: 40px;
+}
+.playoff .round2 .box {
+  margin-bottom: 120px;
+}
+.playoff .round2 .ver {
+  height: 158px;
+}
+.playoff .round2 .hor {
+  top: 100px;
+}
+.playoff .round3 {
+  padding-top: 120px;
+}
+.playoff .round3 .box {
+  margin-bottom: 280px;
+}
+.playoff .round3 .ver {
+  height: 318px;
+}
+.playoff .round3 .hor {
+  top: 180px;
+}
+.playoff .round4 {
+  padding-top: 280px;
+}
+.playoff .round4 .self-line {
+  display: none;
+}
+.playoff .champion {
+  width: 128px;
+  height: 235px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -118px 0 0 -64px;
+}
+/**首页直播列表*/
+.lives {
+  position: relative;
+}
+.lives .live_page {
+  min-height: 400px;
+}
+.lives .pre,
+.lives .next {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: 0;
+  cursor: pointer;
+}
+.lives .pre {
+  background: url(img/arrow-pre.png) no-repeat 0 0;
+  left: 0;
+}
+.lives .next {
+  background: url(img/arrow-next.png) no-repeat 0 0;
+  right: 0;
+}
+.lives .dates_holder {
+  text-align: center;
+}
+.lives .date {
+  color: #ffffff;
+  background: #cccccc;
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px;
+  padding: 10px 0;
+  display: inline-block;
+  width: 124px;
+}
+.lives .date.on,
+.lives .date:hover {
+  background-color: #08c;
+}
+.lives .none {
+  text-align: center;
+  font-size: 30px;
+  padding-top: 200px;
+}
+.lives .games {
+  padding: 10px 0;
+}
+.lives .games li {
+  float: left;
+  width: 480px;
+  border: solid 1px #cccccc;
+  margin: 10px 60px 10px 0;
+  box-shadow: #cccccc 0 0 2px 0;
+}
+.lives .games li.rightest {
+  margin-right: 0;
+}
+.lives .games li .title {
+  line-height: 40px;
+  border-bottom: solid 1px #cccccc;
+  padding-left: 60px;
+  position: relative;
+}
+.lives .games li .clock {
+  width: 24px;
+  height: 24px;
+  background: url(img/clock.png) no-repeat 0 0;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -12px;
+}
+.lives .games li .main {
+  position: relative;
+}
+.lives .games li .team {
+  padding: 15px 160px 15px 75px;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  font-weight: bold;
+  border-bottom: solid 1px #cccccc;
+  font-size: 20px;
+}
+.lives .games li .score {
+  float: right;
+}
+.lives .games li .team_logo {
+  left: 20px;
+}
+.lives .games li .status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ffffff;
+  height: 140px;
+  line-height: 140px;
+  width: 140px;
+  text-align: center;
+  border-left: solid 1px #cccccc;
+}
+.lives .games li .live {
+  padding: 10px 20px;
+  line-height: 1.5;
+}
+.lives .games li .link {
+  color: #08c;
+  font-size: 14px;
+  float: left;
+  margin-right: 10px;
+  line-height: 25px;
+  min-width: 130px;
+}
+.lives .games li .link:hover {
+  text-decoration: underline;
+}
+.Loading {
+  background: url(img/loading.gif) no-repeat center center;
+}

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app.js",
-    "build": "browserify ./public/js/pages/nba_index.js > ./public/js/build/nba_index.js"
+    "build": "gulp | browserify ./public/js/pages/nba_index.js > ./public/js/build/nba_index.js"
   },
   "dependencies": {
     "async": "^0.9.0",

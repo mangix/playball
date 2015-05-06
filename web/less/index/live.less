@@ -1,0 +1,130 @@
+/**首页直播列表*/
+.lives {
+    position: relative;
+    .live_page {
+        min-height: 400px;
+    }
+    //翻页箭头
+    .pre, .next {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        top: 0;
+        cursor: pointer;
+    }
+    .pre {
+        background: url(./img/arrow-pre.png) no-repeat 0 0;
+        left: 0;
+    }
+    .next {
+        background: url(./img/arrow-next.png) no-repeat 0 0;
+        right: 0;
+    }
+
+    //日期
+    .dates_holder {
+        text-align: center;
+    }
+    .date {
+        color: #ffffff;
+        background: #cccccc;
+        font-size: 16px;
+        text-align: center;
+        line-height: 20px;
+        padding: 10px 0;
+        display: inline-block;
+        width:124px;
+        &.on, &:hover {
+            background-color: #08c;
+        }
+    }
+
+    //没有比赛
+    .none{
+        text-align: center;
+        font-size: 30px;
+        padding-top:200px
+    }
+
+
+    .games {
+        padding: 10px 0;
+
+        //比赛框
+        li {
+            float: left;
+            width: 480px;
+            border: solid 1px #cccccc;
+            margin: 10px 60px 10px 0;
+            box-shadow: #cccccc 0 0 2px 0;
+            &.rightest {
+                margin-right: 0;
+            }
+
+            .title {
+                line-height: 40px;
+                border-bottom: solid 1px #cccccc;
+                padding-left: 60px;
+                position: relative;
+            }
+            .clock {
+                width: 24px;
+                height: 24px;
+                background: url(./img/clock.png) no-repeat 0 0;
+                position: absolute;
+                left: 20px;
+                top: 50%;
+                margin-top: -12px;
+            }
+            .main {
+                position: relative;
+            }
+            .team {
+                padding: 15px 160px 15px 75px;
+                height: 40px;
+                line-height: 40px;
+                position: relative;
+                font-weight: bold;
+                border-bottom: solid 1px #cccccc;
+                font-size: 20px;
+            }
+            .score {
+                float: right;
+            }
+            .team_logo {
+                left: 20px;
+            }
+            .status {
+                position: absolute;
+                right: 0;
+                top: 0;
+                background: #ffffff;
+                height: 140px;
+                line-height: 140px;
+                width: 140px;
+                text-align: center;
+                border-left: solid 1px #cccccc;
+            }
+            .live {
+                padding: 10px 20px;
+                line-height: 1.5;
+            }
+            .link {
+                color: #08c;
+                font-size: 14px;
+                float: left;
+                margin-right: 10px;
+                line-height: 25px;
+                min-width: 130px;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+        }
+    }
+}
+
+.Loading {
+    background: url(./img/loading.gif) no-repeat center center;
+}
