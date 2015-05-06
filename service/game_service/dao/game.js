@@ -32,3 +32,7 @@ exports.loadByTypeTime = function (type, fromDate, endDate, cb) {
 exports.loadGamesByRoundID = function (roundId, cb) {
     query('select ?? from Game where RoundID=?', [columns  , roundId], cb);
 };
+
+exports.loadGameById = function (gameId, cb) {
+    query("select ?? from Game where GameID=?", [columns, gameId], cb);
+};

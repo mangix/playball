@@ -65,7 +65,7 @@ exports.loadGames = function (options, cb) {
                                         });
                                     }
                                 }), cb);
-                            }else{
+                            } else {
                                 cb(list);
                             }
                         } else {
@@ -147,4 +147,17 @@ exports.loadGamesByRoundID = function (roundId, cb) {
  * */
 exports.isToday = function (game) {
     return date.isToday(game.Time);
+};
+
+/**
+ * 按GameID 查找比赛
+ * */
+exports.loadGameById = function (gameId, cb) {
+    gameDao.loadGameById(gameId, function (err, game) {
+        if (err) {
+            cb(err);
+        } else {
+            cb(null, game);
+        }
+    });
 };

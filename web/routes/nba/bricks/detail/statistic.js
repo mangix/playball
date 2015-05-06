@@ -3,7 +3,7 @@
  * */
 
 var Brick = require("node-lego").Brick;
-var StatisticService = require("../../../../service/statistic_service");
+var StatisticService = require("../../../../../service/statistic_service/index");
 var logger = require("winston").loggers.get("app");
 
 

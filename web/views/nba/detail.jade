@@ -1,6 +1,15 @@
 extends ../layout
 
 block content
-
-
+    if GameInfo
+        | #{JSON.stringify(GameInfo)}
+    br
+    if Live
+        | #{JSON.stringify(Live)}
+    br
+    if Replay
+        | #{JSON.stringify(Replay)}
+    br
+    if Statistic
+        | #{Statistic}
 block js
