@@ -15,7 +15,23 @@ module.exports = Brick.create("Statistic", function (params, finish) {
             logger.error("Load Statistic error", error);
             finish(Brick.FAIL);
         } else {
-            finish(Brick.SUCCESS, statistic);
+            var data = {
+                teams: [],
+                headers: []
+            };
+            if (statistic && statistic.length) {
+                statistic.forEach(function (row, i) {
+                    //处理主客队
+                    row.forEach(function (column, j) {
+                        if (column.match(/主队|客队/)) {
+                            data.teams.push(i);
+                            data.headers.push(i + 1);
+                        }
+                    });
+                });
+                data.statistic = statistic;
+            }
+            finish(Brick.SUCCESS, data);
         }
     });
 });

@@ -374,6 +374,14 @@ del {
 .lives .games li .main {
   position: relative;
 }
+.lives .games li .detail {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
 .lives .games li .team {
   padding: 15px 160px 15px 75px;
   height: 40px;
@@ -417,4 +425,31 @@ del {
 }
 .Loading {
   background: url(img/loading.gif) no-repeat center center;
+}
+.game_detail .statistic {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.game_detail .statistic tr {
+  line-height: 30px;
+}
+.game_detail .statistic .team {
+  line-height: 3;
+  font-size: 18px;
+  font-weight: bold;
+}
+.game_detail .statistic .team td {
+  border: none;
+}
+.game_detail .statistic .header {
+  font-weight: bold;
+}
+.game_detail .statistic td {
+  border: solid 1px #e1e1e1;
+}
+.game_detail .statistic td.first {
+  text-align: left;
+  padding-left: 20px;
 }

@@ -1,0 +1,5 @@
+table.statistic
+    each tr,i in Statistic.statistic
+        tr(class=~Statistic.teams.indexOf(i)?"team":(~Statistic.headers.indexOf(i)?"header":""))
+            each td,j in tr
+                td(class=j==0?"first":"") #{td}
