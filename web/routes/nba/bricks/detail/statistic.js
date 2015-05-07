@@ -25,7 +25,9 @@ module.exports = Brick.create("Statistic", function (params, finish) {
                     row.forEach(function (column, j) {
                         if (column.match(/主队|客队/)) {
                             data.teams.push(i);
-                            data.headers.push(i + 1);
+                        }
+                        if(column.match(/首发|替补/)){
+                            data.headers.push(i);
                         }
                     });
                 });
