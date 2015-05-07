@@ -427,7 +427,6 @@ del {
   background: url(img/loading.gif) no-repeat center center;
 }
 .game_detail .statistic {
-  margin-top: 30px;
   width: 100%;
   border-collapse: collapse;
   text-align: center;
