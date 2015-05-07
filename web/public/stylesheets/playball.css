@@ -505,7 +505,7 @@ del {
   margin-top: 20px;
 }
 .game_detail .live {
-  white-space: normal;
+  margin-bottom: 20px;
 }
 .game_detail .live .link {
   margin-right: 25px;
