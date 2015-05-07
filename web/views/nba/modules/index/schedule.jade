@@ -33,7 +33,7 @@
                                 .status
                                     | #{game.StatusText}
 
-                                a.detail(href="/playball/nba/game/#{game.GameID}",title="查看详情")
+                                a.detail(href="/playball/nba/game/#{game.GameID}",title="查看详情",target="_blank")
 
                             if game.Status != 2 && game.lives && game.lives.length
                                 .live.Fix
