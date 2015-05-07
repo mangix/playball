@@ -1,8 +1,8 @@
 var async = require("async");
 var _ = require("underscore");
 var Lego = require("node-lego");
-var PlayOffs = require("./bricks/playoff");
-var Schedules = require("./bricks/schedules");
+var PlayOffs = require("./bricks/index/playoff");
+var Schedules = require("./bricks/index/schedules");
 
 exports.execute = function (req, res) {
     new Lego().start({

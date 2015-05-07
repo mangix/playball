@@ -9,9 +9,9 @@
  * Page＝0，从本周1开始
  * */
 
-var DateUtil = require("../../../../util/date_util");
-var GameService = require("../../../../service/game_service/index");
-var TeamService = require("../../../../service/team_service/index");
+var DateUtil = require("../../../../../util/date_util");
+var GameService = require("../../../../../service/game_service/index");
+var TeamService = require("../../../../../service/team_service/index");
 var moment = require("moment");
 var Brick = require("node-lego").Brick;
 
@@ -55,6 +55,7 @@ module.exports = Brick.create("Schedule", function (params, cb) {
                 game.time = moment(game.Time).format("hh:mm");
                 game.hostLogo = TeamService.logo(game.HostName);
                 game.visitLogo = TeamService.logo(game.VisitName);
+                game.StatusText = GameService.status(game.Status);
             });
             var isToday = DateUtil.isToday(new Date(+date));
             return {

@@ -4,7 +4,7 @@
  * url 参数
  * page
  * */
-var schedule = require("../bricks/schedules");
+var schedule = require("../bricks/index/schedules");
 var Lego = require("node-lego");
 
 exports.execute = function (req, res) {

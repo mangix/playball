@@ -1,0 +1,18 @@
+.game_detail
+    .game_info
+        .team_info.Fix
+            .team.Left
+                .team_logo
+                    img(src="#{GameInfo.HostLogo}",width="100%",height="auto")
+                .name #{GameInfo.HostName}
+                .score #{GameInfo.HostScore}
+
+            .team.Right
+                .team_logo
+                    img(src="#{GameInfo.VisitLogo}",width="100%",height="auto")
+                .name #{GameInfo.VisitName}
+                .score #{GameInfo.VisitScore}
+
+            .status #{GameInfo.StatusText}
+
+        .time 开赛时间：#{GameInfo.Time}

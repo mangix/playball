@@ -31,7 +31,7 @@
                                     if game.Status !=0
                                         span.score #{game.VisitScore}
                                 .status
-                                    | #{game.Status==0?"未开始":(game.Status==1?"进行中":"已结束")}
+                                    | #{game.StatusText}
 
                                 a.detail(href="/playball/nba/game/#{game.GameID}",title="查看详情")
 

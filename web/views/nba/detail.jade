@@ -3,18 +3,27 @@ extends ../layout
 block content
     .container.game_detail
         if GameInfo
-            | #{JSON.stringify(GameInfo)}
-            br
-            if Live
-                | #{JSON.stringify(Live)}
-            br
-            if Replay
-                | #{JSON.stringify(Replay)}
-            br
+            .inner
+                include modules/detail/gameinfo
+
+        if Live && Live.length
+            .Title
+                .inner 直播地址
+            .inner
+                .live
+                    each live in Live
+                        a.link(href="#{live.Link}",target="_blank") #{live.Name}
+        if Replay && Replay.length
+            .Title
+                .inner 录像
+            .inner
+                .live
+                    each replay in Replay
+                        a.link(href="#{replay.Link}",target="_blank") #{replay.Title}
 
         if Statistic && Statistic.statistic
             .Title
                 .inner 技术统计
             .inner
-                include modules/statistic
+                include modules/detail/statistic
 block js

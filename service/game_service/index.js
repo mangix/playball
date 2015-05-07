@@ -1,5 +1,6 @@
 var Game = require("./entity/game");
 var gameDao = require("./dao/game");
+var gameEntity = require("./entity/game");
 var playOffDao = require("./dao/playoff");
 var date = require("../../util/date_util");
 var async = require('async');
@@ -26,7 +27,6 @@ exports.addGame = function (game, cb) {
         } else {
             cb(null, id)
         }
-
     });
 };
 
@@ -160,4 +160,17 @@ exports.loadGameById = function (gameId, cb) {
             cb(null, game);
         }
     });
+};
+
+exports.status = function(status){
+    if(status == gameEntity.STATUS_NOT_BEGIN){
+        return "未开始";
+    }
+    if(status == gameEntity.STATUS_IN){
+        return "进行中";
+    }
+    if(status == gameEntity.STATUS_OVER){
+        return "已结束";
+    }
+    return "";
 };
