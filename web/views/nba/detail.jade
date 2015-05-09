@@ -6,20 +6,19 @@ block content
             .inner
                 include modules/detail/gameinfo
 
-        if Live && Live.length && Live.Status!=2
+        if Live && Live.length && GameInfo.Status!=2
             .Title
                 .inner 直播地址
             .inner
                 .live
                     each live in Live
                         a.link(href="#{live.Link}",target="_blank") #{live.Name}
-        if Replay && Replay.length
+
+        if Replay && Replay.list && Replay.list.length
             .Title
-                .inner 录像
+                .inner 比赛录像
             .inner
-                .live
-                    each replay in Replay
-                        a.link(href="#{replay.Link}",target="_blank") #{replay.Title}
+                include modules/detail/replay
 
         if Statistic && Statistic.statistic
             .Title

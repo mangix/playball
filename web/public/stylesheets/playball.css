@@ -512,3 +512,31 @@ del {
   line-height: 30px;
   display: inline-block;
 }
+.video_box {
+  background: #000;
+}
+.video_box .player_box {
+  width: 800px;
+  height: 500px;
+}
+.video_box .video_list {
+  width: 220px;
+  height: 500px;
+  overflow: auto;
+  border-right: solid 1px #e1e1e1;
+}
+.video_box .video_list ul {
+  padding-top: 20px;
+}
+.video_box .video_list ul li {
+  line-height: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+}
+.video_box .video_list ul li:hover {
+  background-color: #323232;
+}
+.video_box .video_list ul li a {
+  display: block;
+  text-decoration: none;
+}
