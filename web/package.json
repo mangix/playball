@@ -20,5 +20,8 @@
     "node-lego": "^0.1.0",
     "serve-favicon": "~2.2.0",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "open": "0.0.5"
   }
 }
