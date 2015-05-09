@@ -16,7 +16,7 @@
             "/nba/ajax/schedule": {
                 "action": "nba/ajax/schedule",
                 "result": {
-                    "success": "nba/modules/schedule.jade"
+                    "success": "nba/modules/index/schedule.jade"
                 }
             },
             "/nbalive/schedule/fetch": {

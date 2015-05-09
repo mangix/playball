@@ -12,4 +12,7 @@
         ul
             each replay in Replay.list
                 li
-                    a(href="javascript:void(0)",data-url="#{replay.Link}") #{replay.Title}
+                    if replay.Type==1
+                        a(href="javascript:void(0)",data-url="#{replay.Link}",class=replay.ReplayID==Replay.defaultReplay.ReplayID?"on":"") #{replay.Title}
+                    else
+                        a(href="#{replay.Link}",target="_blank") #{replay.Title}

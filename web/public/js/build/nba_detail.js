@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var template =
     '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10" type="application/x-shockwave-flash" height="100%" width="100%" >' +
     '<param name="allowfullscreen" value="true">' +
@@ -10,8 +10,10 @@ var template =
     '</object>';
 
 var play = function (container, url) {
-    container.innerHTML = $(template.replace(/\{url\}/g, url));
+    container.innerHTML = template.replace(/\{url\}/g, url);
 };
+
+module.exports = play;
 },{}],2:[function(require,module,exports){
 $(function () {
     var player = require("../modules/player");
@@ -32,4 +34,4 @@ $(function () {
     });
 
 });
-},{"../modules/player":1}]},{},[2]);
+},{"../modules/player":1}]},{},[2])

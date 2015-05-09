@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
-var browserify = require('browserify');
+var browserify = require('gulp-browserify');
 
 gulp.task('less', function () {
     gulp.src('./less/*.less')
@@ -12,11 +12,13 @@ gulp.task('less', function () {
 });
 
 gulp.task('browserify' , function(){
-    var b = browserify();
 
     gulp.src("./public/js/pages/*.js")
-        .pipe(mangle())
-        .pipe(gulp.dest("./public/js/build/"));
+        .pipe(browserify())
+        .pipe(gulp.dest('./public/js/build/'));
+
+
+
 });
 
 gulp.task('default', ['less','browserify']);

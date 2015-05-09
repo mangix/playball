@@ -530,13 +530,14 @@ del {
 }
 .video_box .video_list ul li {
   line-height: 40px;
-  padding-left: 10px;
   font-size: 16px;
-}
-.video_box .video_list ul li:hover {
-  background-color: #323232;
 }
 .video_box .video_list ul li a {
   display: block;
   text-decoration: none;
+  padding-left: 10px;
+}
+.video_box .video_list ul li a:hover,
+.video_box .video_list ul li a.on {
+  background-color: #323232;
 }

@@ -12,9 +12,11 @@ var Replay = require("./bricks/detail/replay");
 exports.execute = function (req, res) {
 
     var gameId = req.params.id;
+    var replayId = req.params.replayId;
 
     new Lego().start({
-        gameId: gameId
+        gameId: gameId,
+        replayId: replayId
     }).pipe(GameInfo, Live, Statistic, Replay).done(function (data) {
         res.result("success", data);
     });

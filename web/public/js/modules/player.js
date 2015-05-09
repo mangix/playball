@@ -9,5 +9,7 @@ var template =
     '</object>';
 
 var play = function (container, url) {
-    container.innerHTML = $(template.replace(/\{url\}/g, url));
+    container.innerHTML = template.replace(/\{url\}/g, url);
 };
+
+module.exports = play;

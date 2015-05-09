@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app.js",
-    "build": "gulp | browserify ./public/js/pages/nba_index.js > ./public/js/build/nba_index.js , browserify ./public/js/pages/nba_detail.js > ./public/js/build/nba_detail.js"
+    "build": "gulp"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -22,6 +22,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "gulp-browserify": "^0.5.1",
     "open": "0.0.5"
   }
 }
