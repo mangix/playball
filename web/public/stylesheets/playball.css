@@ -457,42 +457,45 @@ del {
   text-align: left;
   padding-left: 20px;
 }
-.game_info {
+.game_detail .Title {
+  margin-top: 30px;
+}
+.game_detail .game_info {
   margin-bottom: 20px;
 }
-.game_info .team_info {
+.game_detail .game_info .team_info {
   position: relative;
   margin-top: 20px;
 }
-.game_info .team {
+.game_detail .game_info .team {
   position: relative;
   height: 100px;
   font-size: 18px;
 }
-.game_info .team_logo {
+.game_detail .game_info .team_logo {
   width: 90px;
   height: 84px;
   margin-top: -42px;
 }
-.game_info .Left {
+.game_detail .game_info .Left {
   text-align: left;
   padding-left: 120px;
 }
-.game_info .Left .team_logo {
+.game_detail .game_info .Left .team_logo {
   left: 0;
 }
-.game_info .Right {
+.game_detail .game_info .Right {
   text-align: right;
   padding-right: 120px;
 }
-.game_info .Right .team_logo {
+.game_detail .game_info .Right .team_logo {
   right: 0;
 }
-.game_info .name {
+.game_detail .game_info .name {
   font-weight: bold;
   line-height: 3;
 }
-.game_info .status {
+.game_detail .game_info .status {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
@@ -501,7 +504,7 @@ del {
   text-align: center;
   width: 100%;
 }
-.game_info .time {
+.game_detail .game_info .time {
   margin-top: 20px;
 }
 .game_detail .live {
