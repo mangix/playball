@@ -23,7 +23,12 @@ module.exports = Brick.create("Schedule", function (params, cb) {
 
     var startDate = DateUtil.duration(1).begin;
 
-    startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+    if (startDate.getDay() == 0) {
+        //星期天
+        startDate.setDate(startDate.getDate() - 6);
+    } else {
+        startDate.setDate(startDate.getDate() - startDate.getDay() + 1);
+    }
     startDate.setDate(startDate.getDate() + page * PAGE_SIZE);
 
     var d = DateUtil.duration(PAGE_SIZE, startDate);
