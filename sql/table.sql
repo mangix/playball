@@ -69,3 +69,15 @@ Create Table playball.Statistic(
   Primary KEY (`ID`),
   UNIQUE  KEY UK_GameID(`GameID`)
 )engine=innodb default charset=utf8 comment '技术统计表';
+
+Create Table playball.TextLive(
+  `ID` int  AUTO_INCREMENT NOT NULL Comment 'ID',
+  `GameID` int NOT NULL COMMENT 'GameID',
+  `Time` varchar(20) NULL COMMENT '比赛当前时间',
+  `Score` varchar(30) NULL COMMENT '比分',
+  `Content` varchar(300) NULL  COMMENT '直播内容',
+  `Channel` int NOT NULL  COMMENT '渠道,1 hupu , 2 sina',
+  `UpdateTime` timestamp NOT NULL default NOW() COMMENT '更新时间',
+  Primary KEY (`ID`),
+  INDEX  IX_GameID_Channel(`GameID`,`Channel`)
+)engine=innodb default charset=utf8 comment '文字直播';
