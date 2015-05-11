@@ -5,7 +5,7 @@
 
 
 var Runner = require('./runner')("real-time");
-var UPDATE_FREQUENCY = 40000; //每 40s  更新一次
+var UPDATE_FREQUENCY = 20000; //每 20s  更新一次
 var query = require("../service/common/connection").query;
 
 /**
@@ -78,5 +78,6 @@ Runner.setSchedule(function (finish) {
 
 Runner.addJob(require("./realtime/update_schdule"));
 Runner.addJob(require("./realtime/update_statistic"));
+Runner.addJob(require("./realtime/update_textlive"));
 
 Runner.run();
