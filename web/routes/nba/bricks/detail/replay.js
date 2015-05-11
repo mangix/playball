@@ -14,10 +14,18 @@ module.exports = Brick.create("Replay", function (params, finish) {
             logger.error("Load Replay Error", err);
             finish(Brick.FAIL);
         } else {
+            replays = replays || [];
+            //type
+            replays = replays.filter(function (replay) {
+                return replay.Type == 1;
+            });
+
+
             var data = {
-                list: replays || [],
+                list: replays,
                 defaultId: replayId
             };
+
 
             //make sure default replay
             if (replays && replays.length) {
@@ -26,7 +34,7 @@ module.exports = Brick.create("Replay", function (params, finish) {
                 });
                 if (defaultReplays.length) {
                     data.defaultReplay = defaultReplays[0];
-                }else{
+                } else {
                     data.defaultReplay = replays[0];
                 }
             }
