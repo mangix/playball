@@ -1,10 +1,29 @@
 var teams = [];
 var teamDAO = require("./dao/team");
-
+var teamLoad = false;
+var waitQueue = [];
 //load teams
 teamDAO.loadAllTeam(function (err, list) {
     teams = list || [];
+    teamLoad = true;
+    while (waitQueue.length) {
+        waitQueue.shift()();
+    }
 });
+
+/**
+ * 等teams初始化完成
+ * */
+exports.wait = function (cb) {
+    if (!cb) {
+        return;
+    }
+    if (teamLoad) {
+        cb();
+    } else {
+        waitQueue.push(cb);
+    }
+};
 
 exports.short = function (teamName) {
     var team = teams.filter(function (t) {
