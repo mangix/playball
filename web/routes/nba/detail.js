@@ -8,6 +8,7 @@ var Live = require("./bricks/detail/live");
 var GameInfo = require("./bricks/detail/gameinfo");
 var Statistic = require("./bricks/detail/statistic");
 var Replay = require("./bricks/detail/replay");
+var TextLive = require("./bricks/detail/textlive");
 
 exports.execute = function (req, res) {
 
@@ -16,8 +17,9 @@ exports.execute = function (req, res) {
 
     new Lego().start({
         gameId: gameId,
-        replayId: replayId
-    }).pipe(GameInfo, Live, Statistic, Replay).done(function (data) {
+        replayId: replayId,
+        beginId: 0//文字直播其实id
+    }).pipe(GameInfo, Live, Statistic, Replay, TextLive).done(function (data) {
         res.result("success", data);
     });
 };

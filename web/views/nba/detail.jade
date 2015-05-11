@@ -20,6 +20,12 @@ block content
             .inner
                 include modules/detail/replay
 
+        if TextLive && TextLive.list && TextLive.list.length
+            .Title
+                .inner #{GameInfo.Status==1 ? "文字直播" : "文字实录"}
+            .inner
+                include modules/detail/textlive
+
         if Statistic && Statistic.statistic
             .Title
                 .inner 技术统计

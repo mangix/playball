@@ -31,8 +31,6 @@ module.exports = Brick.create("Replay", function (params, finish) {
                 }
             }
 
-            console.log(data)
-
             finish(Brick.SUCCESS, data);
         }
     });

@@ -18,5 +18,5 @@ exports.insert = function (live, cb) {
  * 根据GameID 获取全部文字直播
  * */
 exports.loadByGameID = function (gameId, channel , beginId, cb) {
-    query('select ?? from TextLive where GameID=? and channel=? and ID>beginId', [columns , gameId, channel,beginId], cb);
+    query('select ?? from TextLive where GameID=? and channel=? and ID>?', [columns , gameId, channel,beginId], cb);
 };

@@ -1,5 +1,6 @@
 var liveDAO = require("./dao/live");
 var LiveEntity = require("./entity/live");
+var _ = require("underscore");
 
 exports.addTextLive = function (live, cb) {
     if (!live) {
@@ -26,6 +27,7 @@ exports.addTextLive = function (live, cb) {
  *      channel:Number , //default LiveEntity.CHANNEL_HUPU
  *      beginId:Number , //起始ID, default 0 ,用于直播
  * }
+ * @param cb{Function}
  * */
 exports.loadLiveByGameID = function (options, cb) {
     options = _.extend({
