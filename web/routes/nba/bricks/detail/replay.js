@@ -26,7 +26,6 @@ module.exports = Brick.create("Replay", function (params, finish) {
                 defaultId: replayId
             };
 
-
             //make sure default replay
             if (replays && replays.length) {
                 var defaultReplays = replays.filter(function (replay) {
