@@ -19,6 +19,13 @@
                     "success": "nba/modules/index/schedule.jade"
                 }
             },
+            "/nba/ajax/textlive": {
+                "action": "nba/ajax/textlive",
+                "result": {
+                    "success": "nba/modules/detail/textlive.jade"
+                }
+            },
+
             "/nbalive/schedule/fetch": {
                 "action": "nbalive/schedule"
             },

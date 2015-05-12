@@ -19,6 +19,11 @@ module.exports = Brick.create("TextLive", function (params, finish) {
             logger.error("Load Text Live Error", err);
             finish(Brick.FAIL);
         } else {
+            if (result && result.list) {
+                result.list.sort(function (o1, o2) {
+                    return o2.ID - o1.ID;
+                });
+            }
             finish(Brick.SUCCESS, result);
         }
     });

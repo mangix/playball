@@ -24,7 +24,9 @@ block content
             .Title
                 .inner #{GameInfo.Status==1 ? "文字直播" : "文字实录"}
             .inner
-                include modules/detail/textlive
+                .textlive_box
+                    table.textlive#J_textlive(data-live=GameInfo.Status==1?"1":"0",data-game="#{GameInfo.GameID}")
+                        include modules/detail/textlive
 
         if Statistic && Statistic.statistic
             .Title

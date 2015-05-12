@@ -544,3 +544,20 @@ del {
 .video_box .video_list ul li a.on {
   background-color: #323232;
 }
+.game_detail .textlive_box {
+  height: 400px;
+  overflow: auto;
+}
+.game_detail .textlive {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 30px;
+}
+.game_detail .textlive td {
+  border: solid 1px #e1e1e1;
+}
+.game_detail .textlive td:nth-child(3) {
+  text-align: left;
+  padding-left: 10px;
+}
