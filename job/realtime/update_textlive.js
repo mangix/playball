@@ -12,16 +12,23 @@ var HOST = "http://g.hupu.com/";
 
 var logger = console;
 var gameSidCache = {};
+var lastFinish = true;
 module.exports = function (runner) {
+    if(!lastFinish){
+        return;
+    }
     logger = runner || console;
+    lastFinish = false;
     TeamService.wait(function () {
         query("select * from Game where ThirdID!=0 and Status=1", function (err, results) {
             if (err) {
                 logger.error("Query Game Error", err);
+                lastFinish = true;
                 return;
             }
             if (!results.length) {
                 logger.error("No Live Game Found");
+                lastFinish = true;
                 return;
             }
             results.forEach(function (game) {
@@ -46,6 +53,7 @@ module.exports = function (runner) {
                     var trs = $("tr");
                     var newSid , datas = [];
                     if (!trs.length) {
+                        lastFinish = true;
                         return;
                     }
                     newSid = trs.eq(0).attr("sid");
@@ -92,11 +100,15 @@ module.exports = function (runner) {
                         if (tasks.length) {
                             logger.info(tasks.length + " lines found");
                             async.series(tasks, function () {
+                                lastFinish = true;
                                 logger.info("Add Lines Finish",game.GameID);
                             });
                         } else {
+                            lastFinish = true;
                             logger.info("No TextLive This Time..");
                         }
+                    }else{
+                        lastFinish = true;
                     }
                 });
             });
