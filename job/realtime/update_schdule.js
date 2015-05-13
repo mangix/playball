@@ -28,7 +28,7 @@ module.exports = function (runner) {
                     updateStatus(game.GameID, 1);
                 }
                 if (game.Status == 1) {
-                    findScore("http://g.hupu.com/nba/daily/boxscore_" + game.ThirdID + ".html", game.GameID, game);
+                    findScore("http://g.hupu.com/nba/daily/playbyplay_" + game.ThirdID + ".html", game.GameID, game);
 //                    findScore("http://g.hupu.com/nba/homepage/getMatchBasicInfo?matchId="+game.ThirdID, game.GameID, game);
                 }
 
