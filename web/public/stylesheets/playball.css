@@ -26,6 +26,7 @@
 }
 body {
   font: 14px/1.5 'Hiragino Sans GB', 'Microsoft YaHei', simsun;
+  color: #323232;
 }
 button,
 input,
@@ -545,7 +546,7 @@ del {
   background-color: #323232;
 }
 .game_detail .textlive_box {
-  height: 400px;
+  height: 409px;
   overflow: auto;
 }
 .game_detail .textlive {
