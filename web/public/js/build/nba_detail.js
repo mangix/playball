@@ -63,7 +63,7 @@ $(function () {
                 success: function (res) {
                     var trs = $(res).prependTo(table);
                     if (trs.length) {
-                        id = $(0).attr("data-id");
+                        id = $(trs[0]).attr("data-id");
                     }
                 },
                 complete: function () {
