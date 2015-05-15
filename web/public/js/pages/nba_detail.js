@@ -41,7 +41,8 @@ $(function () {
                 url: "/playball/nba/ajax/textlive",
                 data: {
                     gameId: gameId,
-                    beginId: id
+                    beginId: id,
+                    html:true
                 },
                 success: function (res) {
                     var trs = $(res).prependTo(table);
