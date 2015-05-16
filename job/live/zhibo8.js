@@ -96,8 +96,8 @@ var detail = function (url, game) {
 };
 
 var addLive = function (game, name, link) {
-    liveService.hasLive(game.GameID, link, function (err, results) {
-        if (!err && results && results.length) {
+    liveService.hasLive(game.GameID, link, function (err, has) {
+        if (!err && !has) {
             liveService.addLive({
                 GameID: game.GameID,
                 Name: name,
