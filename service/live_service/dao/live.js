@@ -20,3 +20,7 @@ exports.insert = function (live, cb) {
 exports.loadByGameID = function (gameId, cb) {
     query('select ?? from Live where gameid=? order by Type asc', [columns ,gameId], cb);
 };
+
+exports.loadByGameIdAndLink = function(gameId, link , cb){
+    query('select ?? from Live where GameID = ? and Link = ?' , [columns , gameId , link] , cb);
+};
