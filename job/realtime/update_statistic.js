@@ -1,5 +1,4 @@
-var request = require('request'),
-    url = 'http://g.hupu.com/nba/daily/boxscore_';
+var url = 'http://g.hupu.com/nba/daily/boxscore_';
 
 var query = require("../../service/common/connection").query;
 var CopyCat = require("../copycat");
@@ -15,7 +14,7 @@ module.exports = function (runner) {
             if (err) {
                 logger.error('db query error!');
             } else {
-                results.map(function (row) {
+                results.forEach(function (row) {
                     CopyCat(url + row.ThirdID + '.html', function ($) {
                         var statisticData = convertStatisticDataToJson($);
 
@@ -26,7 +25,6 @@ module.exports = function (runner) {
                                 logger.info("update game " + row.GameID + " suc");
                             }
                         });
-
                     });
                 });
             }
@@ -38,11 +36,11 @@ module.exports = function (runner) {
 function convertStatisticDataToJson($) {
     var result = [];
 
-    $('.table_list_live').each(function (i, tableEle) {
+    $('.table_list_live').each(function () {
         result.push([$(this).find('h2').text()]);
-        $(this).find('tr').each(function (j, trEle) {
+        $(this).find('tr').each(function () {
             var row = [];
-            $(this).find('td').each(function (k, tdEle) {
+            $(this).find('td').each(function () {
                 row.push($(this).text().trim());
             });
             result.push(row);
