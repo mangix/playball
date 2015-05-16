@@ -28,7 +28,7 @@ exports.loadLiveByGameID = function (gameId, cb) {
     });
 };
 
-exports.hasLive = function (gameId, link) {
+exports.hasLive = function (gameId, link , cb) {
     liveDAO.loadByGameIdAndLink(gameId, link, function (err, results) {
         if (err) {
             cb(new Error('db error'));

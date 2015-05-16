@@ -33,6 +33,7 @@ var findLive = module.exports = function (runner) {
     });
 };
 
+findLive();
 
 var matchGame = function (game, $) {
     var time = new Date(Date.parse(game.Time));
