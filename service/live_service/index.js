@@ -33,7 +33,7 @@ exports.hasLive = function (gameId, link , cb) {
         if (err) {
             cb(new Error('db error'));
         } else {
-            cb(err, !results.length);
+            cb(err, results.length);
         }
     });
 
