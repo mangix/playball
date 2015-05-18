@@ -4,8 +4,8 @@
  * */
 var request = require("request");
 
-var START = new Date(2015, 4, 18);
-var END = new Date(2015, 4, 21);
+var START = new Date(2015, 4, 19);
+var END = new Date(2015, 4, 30);
 //var END = new Date(2014, 9, 30);
 var fs = require("fs");
 var path = require("path");
@@ -49,7 +49,7 @@ var find = module.exports = function (runner) {
             } else {
                 var tds = tr.find("td");
                 var time = tds.eq(0).text().match(/(\d+):(\d+)/);
-                if(!time){
+                if (!time) {
                     return;
                 }
                 var gameTime = new Date(current);
@@ -72,23 +72,29 @@ var find = module.exports = function (runner) {
                 }
 
                 //Save Game
-                GameService.addGame({
-                    Type: 1,
-                    HostID: TeamService.id(hostName),
-                    HostName: hostName,
-                    VisitID: TeamService.id(visitName),
-                    VisitName: visitName,
-                    Time: gameTime,
-                    Status: 0,
-                    WinnerID: 0,
-                    Memo: "NBA季后赛 " + TeamService.short(hostName) + "-" + TeamService.short(visitName),
-                    IsPlayOff: 1,
-                    Season: 20142015,
-                    ThirdID:ThirdID,
-                    HostScore:0,
-                    VisitScore:0
-                }, function (e) {
-                    console.log(e)
+                TeamService.wait(function () {
+
+
+                    GameService.addGame({
+                        Type: 1,
+                        HostID: TeamService.id(hostName),
+                        HostName: hostName,
+                        VisitID: TeamService.id(visitName),
+                        VisitName: visitName,
+                        Time: gameTime,
+                        Status: 0,
+                        WinnerID: 0,
+                        Memo: "NBA季后赛 " + TeamService.short(hostName) + "-" + TeamService.short(visitName),
+                        IsPlayOff: 1,
+                        Season: 20142015,
+                        ThirdID: ThirdID,
+                        HostScore: 0,
+                        VisitScore: 0
+                    }, function (e) {
+                        if(e){
+                            console.log(e)
+                        }
+                    })
                 })
             }
         });
