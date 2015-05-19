@@ -142,7 +142,7 @@ del {
   background: url(img/playoffbg.png) center center no-repeat;
 }
 .playoff .area {
-  width: 512px;
+  width: 472px;
 }
 .playoff .box {
   /*width:85px;*/
@@ -151,12 +151,11 @@ del {
   line-height: 38px;
   position: relative;
   text-align: left;
-  padding-left: 40px;
   font-size: 16px;
 }
 .playoff .box.null,
 .playoff .box.live {
-  padding: 0 20px !important;
+  padding: 0 10px !important;
   text-align: center;
 }
 .playoff .box.last {
@@ -202,12 +201,13 @@ del {
 }
 .playoff .west {
   float: left;
+  padding-left: 40px;
 }
 .playoff .west .round {
   float: left;
 }
 .playoff .west .box .team_logo {
-  left: -5px;
+  left: -45px;
 }
 .playoff .west .box .score {
   float: left;
@@ -223,18 +223,15 @@ del {
 }
 .playoff .east {
   float: right;
+  padding-right: 40px;
 }
 .playoff .east .round {
   float: right;
   margin-right: 0;
   margin-left: 20px;
 }
-.playoff .east .box {
-  padding-left: 0;
-  padding-right: 40px;
-}
 .playoff .east .box .team_logo {
-  right: -5px;
+  right: -45px;
 }
 .playoff .east .box .ver {
   left: -10px;

@@ -5,7 +5,7 @@
     background: url(./img/playoffbg.png) center center no-repeat;
 
     .area {
-        width: 512px;
+        width: 512px - 40px;
     }
 
     .box {
@@ -15,11 +15,10 @@
         line-height: 38px;
         position: relative;
         text-align: left;
-        padding-left: 40px;
         font-size: 16px;
 
         &.null, &.live {
-            padding: 0 20px !important;
+            padding: 0 10px !important;
             text-align: center;
         }
 
@@ -75,12 +74,13 @@
 
     .west {
         float: left;
+        padding-left: 40px;
         .round {
             float: left;
         }
         .box {
             .team_logo {
-                left: -5px;
+                left: -45px;
             }
             .score {
                 float: left;
@@ -100,16 +100,15 @@
 
     .east {
         float: right;
+        padding-right: 40px;
         .round {
             float: right;
             margin-right: 0;
             margin-left: 20px;
         }
         .box {
-            padding-left: 0;
-            padding-right: 40px;
             .team_logo {
-                right: -5px;
+                right: -45px;
             }
             .ver {
                 left: -10px;
