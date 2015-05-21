@@ -7,6 +7,7 @@ var query = require("../../service/common/connection").query;
 var TextLiveService = require("../../service/textlive_service");
 var TeamService = require("../../service/team_service");
 var async = require("async");
+var qs = require("querystring");
 
 var HOST = "http://g.hupu.com/";
 
@@ -44,9 +45,7 @@ module.exports = function (runner) {
                 }
                 var data = gameSidCache[id];
 
-                var url = HOST + "/node/playbyplay/matchLives" + Object.keys(data).reduce(function (sum, current) {
-                    return sum + current + "=" + data[current] + "&";
-                }, "?");
+                var url = HOST + "/node/playbyplay/matchLives?" +qs.stringify(data);
 
                 CopyCat(url, function ($) {
                     //解析URL
