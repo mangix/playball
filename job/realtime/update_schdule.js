@@ -6,6 +6,8 @@ var query = require("../../service/common/connection").query;
 var request = require("request");
 var cheerio = require("cheerio");
 
+var CopyCat = require("../copycat");
+
 var logger;
 module.exports = function (runner) {
     logger = runner || console;
@@ -41,37 +43,40 @@ module.exports = function (runner) {
 function findScore(liveUrl, id, game) {
     logger.info("request hupu game page " + liveUrl + " to get score.. ");
 
-    request(liveUrl, function (errors, response, body) {
-        if (!errors && response && response.statusCode == 200) {
-            var $ = cheerio.load(body);
 
-            var list = $(".table_list_c li");
-            list.each(function (i, li) {
-                var link = $(li).find("a").attr("href");
-                if (~link.indexOf(game.ThirdID)) {
-                    //命中同一场比赛
-                    var hs = "0" , vs = "0";
-                    var status;
-                    $(li).find(".name").each(function (j, name) {
-                        var score = $(name).parent().text().match(/(\d+)/)[0];
-                        if (j == 0) {
-                            hs = score
-                        } else {
-                            vs = score;
-                        }
-                    });
-                    updateScore(id, hs, vs);
+    CopyCat(liveUrl, function ($) {
+        var list = $(".table_list_c li");
+        list.each(function (i, li) {
+            var link = $(li).find("a").attr("href");
+            if (~link.indexOf(game.ThirdID)) {
+                //命中同一场比赛
+                var hs = "0" , vs = "0";
+                var status;
+                $(li).find(".name").each(function (j, name) {
+                    var scoreMatch = $(name).parent().text().match(/(\d+)/);
+                    if(!scoreMatch){
+                        return;
+                    }
+                    var score = scoreMatch[0];
+                    if (j == 0) {
+                        hs = score
+                    } else {
+                        vs = score;
+                    }
+                });
+                updateScore(id, hs, vs);
 
-                    if ($(li).find("p").text() == "已结束") {
-                        status = 2;
-                    }
-                    if (status) {
-                        updateStatus(id, status, +hs > +vs ? game.HostID : game.VisitID, game);
-                    }
+                if ($(li).find("p").text() == "已结束") {
+                    status = 2;
                 }
-            });
-        }
+                if (status) {
+                    updateStatus(id, status, +hs > +vs ? game.HostID : game.VisitID, game);
+                }
+            }
+        });
     });
+
+
 }
 
 
