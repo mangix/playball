@@ -65,12 +65,12 @@ module.exports = function (runner) {
                                 datas.unshift({
                                     time: $(tds[0]).text(),
                                     team: $(tds[1]).text(),
-                                    content: $(tds[2]).text(),
+                                    content: decodeURIComponent($(tds[2]).text()),
                                     score: $(tds[3]).text()
                                 });
                             } else if (tds.length == 1) {
                                 datas.unshift({
-                                    content: $(tds[0]).text()
+                                    content: decodeURIComponent($(tds[0]).text())
                                 });
                             }
                         });
