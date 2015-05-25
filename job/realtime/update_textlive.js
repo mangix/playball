@@ -15,7 +15,7 @@ var logger = console;
 var gameSidCache = {};
 var lastFinish = true;
 module.exports = function (runner) {
-    if(!lastFinish){
+    if (!lastFinish) {
         return;
     }
     logger = runner || console;
@@ -45,7 +45,7 @@ module.exports = function (runner) {
                 }
                 var data = gameSidCache[id];
 
-                var url = HOST + "/node/playbyplay/matchLives?" +qs.stringify(data);
+                var url = HOST + "/node/playbyplay/matchLives?" + qs.stringify(data);
 
                 CopyCat(url, function ($) {
                     //解析URL
@@ -65,12 +65,12 @@ module.exports = function (runner) {
                                 datas.unshift({
                                     time: $(tds[0]).text(),
                                     team: $(tds[1]).text(),
-                                    content: decodeURIComponent($(tds[2]).text()),
+                                    content: $(tds[2]).text(),
                                     score: $(tds[3]).text()
                                 });
                             } else if (tds.length == 1) {
                                 datas.unshift({
-                                    content: decodeURIComponent($(tds[0]).text())
+                                    content: $(tds[0]).text()
                                 });
                             }
                         });
@@ -85,12 +85,12 @@ module.exports = function (runner) {
                                     GameID: game.GameID,
                                     Score: data.score || "",
                                     Time: data.time || "",
-                                    Content: content
+                                    Content: decodeURIComponent(content)
                                 }, function (err) {
                                     if (err) {
                                         logger.error("Add TextLiveService.addTextLive Error", err);
                                     } else {
-                                        logger.info("add TextLiveService Suc",game.GameID);
+                                        logger.info("add TextLiveService Suc", game.GameID);
                                     }
                                     cb(null);
                                 });
@@ -100,13 +100,13 @@ module.exports = function (runner) {
                             logger.info(tasks.length + " lines found");
                             async.series(tasks, function () {
                                 lastFinish = true;
-                                logger.info("Add Lines Finish",game.GameID);
+                                logger.info("Add Lines Finish", game.GameID);
                             });
                         } else {
                             lastFinish = true;
                             logger.info("No TextLive This Time..");
                         }
-                    }else{
+                    } else {
                         lastFinish = true;
                     }
                 });
@@ -114,3 +114,5 @@ module.exports = function (runner) {
         });
     });
 };
+
+module.exports()
