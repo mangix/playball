@@ -2,16 +2,10 @@
     "/playball": {
         "subs": {
             "/nba": {
-                "action": "nba/index",
-                "result": {
-                    "success": "nba/index.jade"
-                }
+                "action": "nba/index"
             },
             "/nba/game/:id": {
-                "action": "nba/detail",
-                "result": {
-                    "success": "nba/detail.jade"
-                }
+                "action": "nba/detail"
             },
             "/nba/ajax/schedule": {
                 "action": "nba/ajax/schedule",
