@@ -8,10 +8,7 @@
                 "action": "nba/detail"
             },
             "/nba/ajax/schedule": {
-                "action": "nba/ajax/schedule",
-                "result": {
-                    "success": "nba/modules/index/schedule.jade"
-                }
+                "action": "nba/ajax/schedule"
             },
             "/nba/ajax/textlive": {
                 "action": "nba/ajax/textlive",

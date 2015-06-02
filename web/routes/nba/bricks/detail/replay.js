@@ -9,6 +9,7 @@ module.exports = Brick.create("Replay", function (params, finish) {
     var gameId = params.gameId;
     var replayId = params.replayId || 0;
 
+
     ReplayService.loadReplayByGameID(gameId, function (err, replays) {
         if (err) {
             logger.error("Load Replay Error", err);
@@ -42,4 +43,4 @@ module.exports = Brick.create("Replay", function (params, finish) {
         }
     });
 
-});
+},"/nba/modules/detail/replay.jade");

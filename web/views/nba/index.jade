@@ -1,49 +1,15 @@
 extends ../layout
 
 block content
-    .playoff.Fix.inner
-        - var list = [PlayOffs.west , PlayOffs.east];
-
-        each area,i in list
-            .area(class=i==0?'west':'east')
-                each round,j in area
-                    .round(class="round#{j+1}")
-                        each team,index in round
-                            .box(class='#{team.Type}',class=index==round.length-1?'last':'',class=index%2==0?'even':'odd')
-                                if team.Type == 'null'
-                                    span ?
-                                else if team.Type == "team"
-                                    if j==0
-                                        img.team_logo(src="#{team.logo}")
-                                    span.team #{team.TeamName}
-                                    span.score #{team.TeamWin}
-                                else if team.Type == "live"
-                                    if team.live
-                                        if team.live.Status!=2
-                                            a.on(href="#live_#{team.live.GameID}")
-                                        else
-                                            | #{team.live.parsedScore}
-                                    else if team.next
-                                        | NEXT
-                                        br
-                                        | #{team.next.displayTime}
-                                .self-line
-                                if index%2==0 && j<3
-                                    .hor
-                                    .ver
-
-        if !PlayOffs.champion
-            .champion
-                img(src='/playball/static/stylesheets/img/obrein.jpg')
-
+    div !{PlayOffsView}
     //直播
     .Title
         .inner LIVE!
     .lives.inner.J_schedule_page
         .J_operate.pre
         .J_operate.next
-        .pages
-            include modules/index/schedule
+        .pages !{ScheduleView}
+
 
 block js
     script(src="/playball/static/js/build/nba_index.js")

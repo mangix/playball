@@ -71,7 +71,9 @@ module.exports = Brick.create("Schedule", function (params, cb) {
             };
         });
 
-        cb(Brick.SUCCESS, list);
+        cb(Brick.SUCCESS, {
+            list:list
+        });
     });
 
-});
+},"/nba/modules/index/schedule.jade");

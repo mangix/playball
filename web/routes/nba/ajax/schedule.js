@@ -11,6 +11,6 @@ exports.execute = function (req, res) {
     new Lego().start({
         page: req.query.page || 0
     }).pipe(schedule).done(function(data){
-        res.result("success", data);
+        res.send(data.ScheduleView);
     });
 };

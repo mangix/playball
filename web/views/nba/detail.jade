@@ -3,8 +3,8 @@ extends ../layout
 block content
     .container.game_detail
         if GameInfo
-            .inner
-                include modules/detail/gameinfo
+            .inner !{GameInfoView}
+
 
         if Live && Live.length && GameInfo.Status!=2
             .Title
@@ -17,8 +17,8 @@ block content
         if Replay && Replay.list && Replay.list.length
             .Title
                 .inner 比赛录像
-            .inner
-                include modules/detail/replay
+            .inner !{ReplayView}
+
 
         if TextLive && TextLive.list && TextLive.list.length
             .Title
@@ -26,12 +26,12 @@ block content
             .inner
                 .textlive_box
                     table.textlive#J_textlive(data-live=GameInfo.Status==1?"1":"0",data-game="#{GameInfo.GameID}")
-                        include modules/detail/textlive
+                        | !{TextLiveView}
 
         if Statistic && Statistic.statistic
             .Title
                 .inner 技术统计
-            .inner
-                include modules/detail/statistic
+            .inner !{StatisticView}
+
 block js
     script(src="/playball/static/js/build/nba_detail.js")

@@ -10,10 +10,14 @@ var Statistic = require("./bricks/detail/statistic");
 var Replay = require("./bricks/detail/replay");
 var TextLive = require("./bricks/detail/textlive");
 
-exports.execute = function (req, res) {
+exports.execute = function (req, res, next) {
 
     var gameId = req.params.id;
     var replayId = req.query.replayId;
+    if (!gameId || !/\d+/.test("" + gameId)) {
+        next(new Error());
+        return;
+    }
 
     new Lego().start({
         gameId: gameId,

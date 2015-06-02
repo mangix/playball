@@ -3,16 +3,16 @@
         .team_info.Fix
             .team.Left
                 .team_logo
-                    img(src="#{GameInfo.HostLogo}",width="100%",height="auto")
-                .name #{GameInfo.HostName}
-                .score #{GameInfo.HostScore}
+                    img(src="#{HostLogo}",width="100%",height="auto")
+                .name #{HostName}
+                .score #{HostScore}
 
             .team.Right
                 .team_logo
-                    img(src="#{GameInfo.VisitLogo}",width="100%",height="auto")
-                .name #{GameInfo.VisitName}
-                .score #{GameInfo.VisitScore}
+                    img(src="#{VisitLogo}",width="100%",height="auto")
+                .name #{VisitName}
+                .score #{VisitScore}
 
-            .status #{GameInfo.StatusText}
+            .status #{StatusText}
 
-        .time 开赛时间：#{GameInfo.Time}
+        .time 开赛时间：#{Time}

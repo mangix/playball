@@ -3,16 +3,16 @@
     .player_box.Left#J_player_box
         object(classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10" type="application/x-shockwave-flash", height="100%", width="100%", id="objVideo")
             param(name="allowfullscreen" ,value="true")
-            param(name="movie",value="#{Replay.defaultReplay.Link}")
+            param(name="movie",value="#{defaultReplay.Link}")
             param(name="quality" value="High")
             param(name="wmode",value="opaque")
             param(name="allowscriptaccess",value="always")
-            embed(id="11815_swf",src="#{Replay.defaultReplay.Link}" ,quality="High" ,pluginspage="http://www.macromedia.com/go/getflashplayer" ,type="application/x-shockwave-flash" ,wmode="opaque" ,allowscriptaccess="always" ,allowfullscreen="true", height="100%", width="100%")
+            embed(id="11815_swf",src="#{defaultReplay.Link}" ,quality="High" ,pluginspage="http://www.macromedia.com/go/getflashplayer" ,type="application/x-shockwave-flash" ,wmode="opaque" ,allowscriptaccess="always" ,allowfullscreen="true", height="100%", width="100%")
     .video_list.Right#J_relay_ist
         ul
-            each replay in Replay.list
+            each replay in list
                 li
                     if replay.Type==1
-                        a(href="javascript:void(0)",data-url="#{replay.Link}",class=replay.ReplayID==Replay.defaultReplay.ReplayID?"on":"") #{replay.Title}
+                        a(href="javascript:void(0)",data-url="#{replay.Link}",class=replay.ReplayID==defaultReplay.ReplayID?"on":"") #{replay.Title}
                     else
                         a(href="#{replay.Link}",target="_blank") #{replay.Title}

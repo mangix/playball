@@ -36,4 +36,4 @@ module.exports = Brick.create("Statistic", function (params, finish) {
             finish(Brick.SUCCESS, data);
         }
     });
-});
+},"/nba/modules/detail/statistic.jade");

@@ -1,0 +1,34 @@
+.playoff.Fix.inner
+    - var list = [west , east];
+
+    each area,i in list
+        .area(class=i==0?'west':'east')
+            each round,j in area
+                .round(class="round#{j+1}")
+                    each team,index in round
+                        .box(class='#{team.Type}',class=index==round.length-1?'last':'',class=index%2==0?'even':'odd')
+                            if team.Type == 'null'
+                                span ?
+                            else if team.Type == "team"
+                                if j==0
+                                    img.team_logo(src="#{team.logo}")
+                                span.team #{team.TeamName}
+                                span.score #{team.TeamWin}
+                            else if team.Type == "live"
+                                if team.live
+                                    if team.live.Status!=2
+                                        a.on(href="#live_#{team.live.GameID}")
+                                    else
+                                        | #{team.live.parsedScore}
+                                else if team.next
+                                    | NEXT
+                                    br
+                                    | #{team.next.displayTime}
+                            .self-line
+                            if index%2==0 && j<3
+                                .hor
+                                .ver
+
+    if !champion
+        .champion
+            img(src='/playball/static/stylesheets/img/obrein.jpg')

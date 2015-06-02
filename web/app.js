@@ -5,12 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require("../log");
+var Lego = require("node-lego");
+Lego.setting.set("debug", false);
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+Lego.setting.set("views", path.join(__dirname, 'views'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -21,10 +24,10 @@ app.use(cookieParser());
 app.use('/playball/static', express.static(path.join(__dirname, 'public')));
 
 var sledge = require("express-sledge");
-sledge(app, require("./router.json"),path.join(__dirname, "routes"));
+sledge(app, require("./router.json"), path.join(__dirname, "routes"));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -34,7 +37,7 @@ app.use(function(req, res, next) {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
         message: err.message,

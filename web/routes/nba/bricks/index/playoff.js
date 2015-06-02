@@ -118,7 +118,7 @@ module.exports = Brick.create("PlayOffs", function (params, cb) {
             cb(Brick.SUCCESS, data);
         });
     });
-});
+},"nba/modules/index/playoff.jade");
 
 var fillNul = function (area) {
     area.forEach(function (round, i) {

@@ -31,4 +31,4 @@ module.exports = Brick.create("GameInfo", function (params, finish) {
             finish(Brick.SUCCESS, game);
         }
     });
-});
+},"/nba/modules/detail/gameinfo.jade");

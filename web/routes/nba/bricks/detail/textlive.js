@@ -27,4 +27,4 @@ module.exports = Brick.create("TextLive", function (params, finish) {
             finish(Brick.SUCCESS, result);
         }
     });
-});
+},"/nba/modules/detail/textlive.jade");
